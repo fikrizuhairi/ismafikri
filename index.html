@@ -2,535 +2,248 @@
 <html lang="ms">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
-<title>Walimatulurus - Isma & Fikri</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Jemputan — Siti Ismahani &amp; Fikri</title>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg: #060607;
-  --card: rgba(255,255,255,0.03);
-  --accent: #f8d7b6;
-  --muted: #cfcfd3;
-  --glass: rgba(255,255,255,0.04);
-  --radius: 12px;
-  --gap: 14px;
-  --btn-h: 48px;
-  --maxw: 980px;
-  --font-sans: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-  --font-script: "Great Vibes", cursive;
-}
+  /* Reset & base */
+  :root{
+    --bg:#ffffff;
+    --muted:#8a8a8a; /* grey text */
+    --accent:#222;
+    --nav-bg:#1f1f23;
+    --nav-icon:#ffffff;
+    --maxw:900px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--muted);
+    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.4;
+  }
 
-/* Reset & base */
-*{box-sizing:border-box}
-html,body{height:100%; margin:0; font-family:var(--font-sans); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
-body{background:var(--bg); color:#fff; line-height:1.45;}
+  /* page container that centers content vertically on tall screens */
+  .page{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start; /* push down a bit for spacing */
+    padding:40px 20px 96px; /* bottom padding to avoid nav overlap */
+  }
 
-/* Container */
-.container{width:100%; max-width:var(--maxw); margin:0 auto; padding:18px;}
+  .card{
+    width:100%;
+    max-width:var(--maxw);
+    text-align:center;
+    padding:18px 14px;
+  }
 
-/* HERO */
-.hero{
-  min-height:calc(100vh - 24px);
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
-  padding-top:28px;
-  padding-bottom:28px;
-  background-image: linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0.48)), url('assets/hero.jpg');
-  background-size:cover;
-  background-position:center;
-  text-align:left;
-}
+  /* Arabic greeting small */
+  .arabic{
+    font-family: "Cormorant Garamond", serif;
+    color:var(--muted);
+    font-size:18px;
+    margin-bottom:8px;
+    line-height:1;
+  }
 
-/* Card */
-.card{
-  width:100%;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border-radius:var(--radius);
-  padding:16px;
-  box-shadow: 0 6px 22px rgba(0,0,0,0.5);
-  display:flex;
-  flex-direction:column;
-  gap:var(--gap);
-  backdrop-filter: blur(4px);
-}
+  .greeting{
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:18px;
+  }
 
-/* text */
-.logo-label{font-size:13px; color:var(--muted); margin-bottom:6px}
-.parents{font-size:13px; color:var(--muted); margin-bottom:6px}
-.couple{
-  font-family:var(--font-script);
-  font-size:34px;
-  color:#fff;
-  margin:2px 0 4px;
-  line-height:1.05;
-}
-.meta{font-size:14px; color:var(--muted)}
+  /* Parents names */
+  .parents{
+    font-family: "Cormorant Garamond", serif;
+    color:#6f6f6f;
+    font-size:30px;
+    letter-spacing:1px;
+    margin:8px 0 12px;
+    line-height:1.05;
+  }
+  .parents .amp{ display:block; font-size:36px; color:#9a9a9a; margin:8px 0; }
 
-/* Countdown */
-.countdown{ display:flex; gap:10px; margin-top:10px; flex-wrap:wrap; }
-.countdown .item{ min-width:56px; padding:10px; border-radius:10px; background:var(--glass); text-align:center; display:flex; flex-direction:column; align-items:center; }
-.countdown .num{ font-weight:700; font-size:18px; color:#fff }
-.countdown .label{ font-size:12px; color:rgba(255,255,255,0.9); margin-top:4px }
+  .invite-line{
+    color:var(--muted);
+    font-size:15px;
+    margin:14px 0 18px;
+  }
 
-/* Actions */
-.actions{display:flex; gap:10px; margin-top:12px; flex-wrap:wrap}
-.btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; height:var(--btn-h); padding:0 16px; border-radius:10px; border:0; font-weight:600; cursor:pointer; text-decoration:none; color:var(--accent); background:transparent; min-width:110px;}
-.btn-primary{ background:linear-gradient(90deg,#ffcfb0,#ffd4a2); color:#2b1b10; box-shadow: 0 8px 22px rgba(0,0,0,0.45);}
-.btn:active{transform:translateY(1px)}
+  /* couple names */
+  .couple{
+    font-family: "Cormorant Garamond", serif;
+    color:#666666;
+    font-size:28px;
+    letter-spacing:2px;
+    margin:26px 0 14px;
+    line-height:1.08;
+  }
+  .couple .amp{ display:block; font-size:40px; color:#9a9a9a; margin:8px 0; }
 
-/* Thumb */
-.thumb{width:100%; height:220px; border-radius:10px; overflow:hidden; background:rgba(255,255,255,0.02)}
-.thumb img{width:100%; height:100%; object-fit:cover; display:block}
+  /* date area */
+  .date-wrap{
+    margin-top:28px;
+    color:var(--muted);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+  }
+  .date-icon{
+    width:44px;
+    height:44px;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#f3f3f3;
+    color:#888;
+    box-shadow: none;
+  }
+  .date-label{ font-size:13px; color:var(--muted) }
+  .date-value{ font-size:18px; color:#666; letter-spacing:1.5px }
 
-/* Details */
-.section{padding:18px; display:block}
-.card-inner{background:var(--card); border-radius:12px; padding:14px; color:var(--muted)}
-.map{width:100%; height:220px; border-radius:10px; overflow:hidden; border:1px solid rgba(255,255,255,0.04); margin-top:10px}
-.map iframe{width:100%; height:100%; border:0}
+  /* bottom nav */
+  .bottom-nav{
+    position:fixed;
+    left:0; right:0; bottom:0;
+    height:68px;
+    background:var(--nav-bg);
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    z-index:50;
+    box-shadow: 0 -6px 18px rgba(0,0,0,0.25);
+  }
+  .nav-item{
+    color:var(--nav-icon);
+    text-decoration:none;
+    font-size:12px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    width:64px;
+    text-align:center;
+    opacity:0.98;
+  }
+  .nav-item svg{ width:22px; height:22px; display:block; }
 
-.aside{margin-top:12px; display:flex; gap:10px; flex-direction:column}
-.badge{display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.03); font-size:12px; color:var(--muted)}
+  /* optional label at right (like screenshot) */
+  .device-label{
+    position:fixed;
+    right:12px;
+    bottom:76px;
+    background:rgba(0,0,0,0.6);
+    color:#fff;
+    padding:6px 10px;
+    border-radius:8px;
+    font-size:12px;
+  }
 
-/* Modal */
-.modal-backdrop{position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:40; background:rgba(0,0,0,0.6); padding:20px}
-.modal{width:100%; max-width:680px; background:#0f0f10; border-radius:12px; padding:16px; box-shadow:0 24px 60px rgba(0,0,0,0.65)}
-.form-row{display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap}
-.form-row .field{flex:1 1 160px; min-width:120px}
-label{display:block; font-size:13px; margin-bottom:6px; color:var(--muted)}
-input[type="text"], input[type="email"], textarea, select{width:100%; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:transparent; color:#fff}
-
-/* Footer */
-.footer{padding:16px; text-align:center; color:var(--muted); font-size:13px}
-
-/* Larger screens */
-@media (min-width:880px){
-  .hero{align-items:center; padding:48px 20px}
-  .card{flex-direction:row; align-items:center; gap:22px; padding:24px}
-  .invite-text{flex:1}
-  .thumb{width:240px; height:240px; flex:0 0 240px}
-  .couple{font-size:48px}
-  .map{height:260px}
-  .actions{justify-content:flex-start}
-}
-
-/* Accessibility focus */
-.btn:focus, a:focus, input:focus, textarea:focus{outline:3px solid rgba(255,220,160,0.12); outline-offset:2px}
-
-/* Utility */
-.hidden{display:none !important}
-.arabic{font-family: "Scheherazade", serif; font-size:18px; direction:rtl; text-align:center}
+  /* responsive */
+  @media(min-width:880px){
+    .page{ padding-top:80px; padding-bottom:110px }
+    .parents{ font-size:44px }
+    .couple{ font-size:42px }
+    .date-value{ font-size:20px }
+    .bottom-nav{ height:80px }
+    .nav-item{ font-size:13px }
+  }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <!-- HERO -->
-  <section class="hero" id="hero" aria-label="Jemputan utama">
-    <div class="card" role="region" aria-label="Kad jemputan">
-      <div class="invite-text">
-        <div class="logo-label">هُ — Assalamualaikum &amp; Salam Sejahtera</div>
+<div class="page">
+  <main class="card" role="main" aria-label="Jemputan utama">
+    <!-- Arabic greeting -->
+    <div class="arabic">ٱلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ ٱللَّٰهِ وَبَرَكَاتُهُ</div>
 
-        <div class="parents">
-          HJ. MOHD SHUHAIMI BIN DAUD<br>
-          &amp;<br>
-          HJH. NOR AZILA BINTI RAMLI
-        </div>
+    <!-- English greeting -->
+    <div class="greeting">Assalamualaikum &amp; Salam Sejahtera</div>
 
-        <div style="color:var(--muted); margin-bottom:6px;">Dengan penuh kesyukuran kami menjemput,</div>
-        <div style="color:var(--muted); margin-bottom:8px;"><strong>Dato’ | Datin | Tuan | Puan | Encik | Cik</strong></div>
-
-        <div style="color:var(--muted); margin-bottom:10px;">ke majlis perkahwinan puteri kami</div>
-
-        <div class="couple" id="coupleName">SITI ISMAHANI IZZATI<br> &amp; <br> MUHAMMAD FIKRI BIN ZUHAIRI</div>
-
-        <div class="meta" id="metaText">Tarikh | Date — 03 JANUARI 2026</div>
-
-        <!-- Countdown -->
-        <div class="countdown" id="countdown" aria-live="polite" aria-atomic="true">
-          <div class="item" data-unit="days"><span class="num" id="cd-days">00</span><span class="label">Hari</span></div>
-          <div class="item" data-unit="hours"><span class="num" id="cd-hours">00</span><span class="label">Jam</span></div>
-          <div class="item" data-unit="mins"><span class="num" id="cd-mins">00</span><span class="label">Minit</span></div>
-          <div class="item" data-unit="secs"><span class="num" id="cd-secs">00</span><span class="label">Saat</span></div>
-        </div>
-
-        <!-- Actions -->
-        <div class="actions" role="toolbar" aria-label="Tindakan">
-          <button class="btn btn-primary" id="rsvpBtn" aria-haspopup="dialog">RSVP</button>
-          <a class="btn" href="#detail" role="button">Butiran Majlis</a>
-          <button class="btn" id="playMusicBtn" title="Mute / Unmute muzik">Mute / Unmute</button>
-        </div>
-
-        <div style="margin-top:12px; color:var(--muted); font-size:13px;">
-          بَارَكَ اللهُ لَكُماَ وَبَارَكَ عَلَيْكُماَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ<br>
-          <em>“Semoga Allah memberkatimu saat bahagia dan saat susah, serta mengumpulkan kalian berdua di dalam kebaikan.”</em><br>
-          <small style="color:var(--muted)">(HR. Abu Daud, No. 2130)</small>
-        </div>
-
-      </div>
-
-      <!-- Thumb image -->
-      <div class="thumb" aria-hidden="false">
-        <img src="assets/couple.jpg" alt="Pasangan - Siti Ismahani & Muhammad Fikri" loading="lazy">
-      </div>
+    <!-- Parents -->
+    <div class="parents">
+      HJ. MOHD SHUHAIMI BIN DAUD
+      <span class="amp">&amp;</span>
+      HJH. NOR AZILA BINTI RAMLI
     </div>
-  </section>
 
-  <!-- DETAILS -->
-  <section id="detail" class="section" aria-label="Butiran majlis">
-    <div class="card-inner">
-      <h3 style="color:#fff; margin-top:0">Atur Cara | Itinerary</h3>
-      <p><strong>Jamuan :</strong> 11.00 AM – 4.00 PM</p>
-      <p><strong>Ketibaan Pengantin :</strong> 12.00 PM</p>
-
-      <hr style="border:none; height:1px; background:rgba(255,255,255,0.03); margin:14px 0">
-
-      <h4 style="color:#fff">Lokasi | Location</h4>
-      <p class="badges"><span class="badge">WHITE HOUSE EVENT SPACE, DUNGUN</span></p>
-
-      <div class="map" id="mapWrap" aria-hidden="false">
-        <!-- Embed map -->
-        <iframe id="gmap"
-          src="https://www.google.com/maps?q=White+House+Event+Space+Dungun&output=embed"
-          loading="lazy" referrerpolicy="no-referrer-when-downgrade" aria-label="Peta lokasi"></iframe>
-
-        <div style="text-align:center; margin-top:10px;">
-          <a href="https://maps.app.goo.gl/Z2F3c86dVen1ciR29" target="_blank" rel="noopener" class="btn btn-primary" aria-label="Buka lokasi dalam Google Maps">
-            📍 Buka dalam Google Maps
-          </a>
-        </div>
-      </div>
-
-      <div class="aside" style="margin-top:12px">
-        <div style="color:var(--muted)"><strong>Hubungi:</strong> +60 12-345 6789 (Isma)</div>
-        <div style="color:var(--muted)"><strong>Pakaian:</strong> Sopan</div>
-        <div style="margin-top:8px">
-          <button class="btn" id="shareBtn">Kongsi Jemputan</button>
-        </div>
-      </div>
+    <div class="invite-line">
+      Dengan penuh kesyukuran kami menjemput,<br>
+      <strong>Dato’ | Datin | Tuan | Puan | Encik | Cik</strong><br>
+      ke majlis perkahwinan puteri kami
     </div>
-  </section>
 
-  <!-- RSVP Modal -->
-  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal" role="document" aria-labelledby="rsvpTitle">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px">
-        <strong id="rsvpTitle" style="font-size:16px">Borang RSVP</strong>
-        <button class="btn" id="closeModal" aria-label="Tutup borang">Tutup</button>
-      </div>
-
-      <form id="rsvpForm">
-        <div class="form-row">
-          <div class="field">
-            <label for="guestName">Nama</label>
-            <input id="guestName" name="name" type="text" placeholder="Nama penuh" required>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="field">
-            <label for="guestEmail">Email (pilihan)</label>
-            <input id="guestEmail" name="email" type="email" placeholder="contoh@mail.com">
-          </div>
-          <div class="field">
-            <label for="guestPhone">Telefon</label>
-            <input id="guestPhone" name="phone" type="text" placeholder="+60 12-345 6789" required>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="field">
-            <label for="willAttend">Hadir?</label>
-            <select id="willAttend" name="attend" required>
-              <option value="yes">Ya, saya akan hadir</option>
-              <option value="no">Maaf, tidak dapat hadir</option>
-              <option value="maybe">Belum pasti</option>
-            </select>
-          </div>
-        </div>
-
-        <label for="msg">Pesanan / Permintaan</label>
-        <textarea id="msg" name="message" placeholder="Ada keperluan khas?"></textarea>
-
-        <div style="margin-top:12px; display:flex; gap:8px; justify-content:flex-end">
-          <button type="button" class="btn" id="cancelForm">Batal</button>
-          <button type="submit" class="btn btn-primary">Hantar RSVP</button>
-        </div>
-
-        <p id="formStatus" style="margin-top:10px; color:var(--muted); font-size:13px"></p>
-      </form>
+    <!-- Couple -->
+    <div class="couple">
+      SITI ISMAHANI IZZATI BINTI MOHD SHUHAIMI
+      <span class="amp">&amp;</span>
+      MUHAMMAD FIKRI BIN ZUHAIRI
     </div>
-  </div>
 
-  <footer class="footer">Terima kasih — بَارَكَ اللهُ لَكُماَ 🌺</footer>
+    <!-- Date block -->
+    <div class="date-wrap" aria-hidden="false">
+      <div class="date-icon" aria-hidden="true">
+        <!-- calendar svg -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="16" rx="2" stroke="#9a9a9a" stroke-width="1.4" fill="none"/>
+          <path d="M16 3v4M8 3v4" stroke="#9a9a9a" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M7 11h10M7 15h10" stroke="#9a9a9a" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="date-label">Tarikh | Date</div>
+      <div class="date-value">03 JANUARI 2026</div>
+    </div>
+
+  </main>
 </div>
 
-<!-- YT API container (hidden) -->
-<div id="yt-player-container" style="width:0;height:0;overflow:hidden;position:fixed;left:-9999px;top:-9999px;"></div>
-<script src="https://www.youtube.com/iframe_api"></script>
+<!-- bottom nav -->
+<nav class="bottom-nav" role="navigation" aria-label="Navigasi">
+  <a class="nav-item" href="tel:+60123456789" aria-label="Hubungi">
+    <!-- phone -->
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72c.12 1.01.39 2 .78 2.94a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l1.1-1.25a2 2 0 0 1 2.11-.45c.94.39 1.93.66 2.94.78A2 2 0 0 1 22 16.92z" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>CONTACT</span>
+  </a>
 
-<script>
-/* ================= CONFIG =================
-   - Paste your Apps Script web app URL in rsvpEndpoint to enable Google Sheets saving
-   - Set rsvpSecret to match SECRET_TOKEN in your Apps Script deployment
-*/
-const CONFIG = {
-  coupleName: "SITI ISMAHANI IZZATI & MUHAMMAD FIKRI",
-  dateISO: "2026-01-03T08:00:00+08:00",
-  metaText: "03 JANUARI 2026",
-  heroImage: "assets/hero.jpg",
-  coupleImage: "assets/couple.jpg",
-  rsvpEndpoint: "",
-  rsvpSecret: "gembira2026!"
-};
-/* ========================================= */
+  <a class="nav-item" href="https://www.google.com/maps?q=White+House+Event+Space+Dungun" target="_blank" rel="noopener" aria-label="Maps">
+    <!-- map pin -->
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s8-4.5 8-11a8 8 0 1 0-16 0c0 6.5 8 11 8 11z" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>MAPS</span>
+  </a>
 
-/* Init UI */
-document.getElementById('coupleName').textContent = "SITI ISMAHANI IZZATI\n&\nMUHAMMAD FIKRI BIN ZUHAIRI";
-document.getElementById('metaText').textContent = "03 JANUARI 2026";
-document.querySelector('.hero').style.backgroundImage = `linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0.48)), url('${CONFIG.heroImage}')`;
-document.querySelector('.thumb img').src = CONFIG.coupleImage;
+  <a class="nav-item" href="#wish" aria-label="Wish">
+    <!-- chat bubble / wish -->
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>WISH</span>
+  </a>
 
-/* Countdown */
-function pad(n){ return String(n).padStart(2,'0'); }
-function startCountdown(targetISO){
-  const target = new Date(targetISO);
-  if(Number.isNaN(target.getTime())){ console.warn('Invalid date:', targetISO); return; }
+  <a class="nav-item" href="#gallery" aria-label="Gallery">
+    <!-- image icon -->
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#fff" stroke-width="1.2"/><path d="M8 14l2.5-3 2 2.5L16 10l3 4" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>GALLERY</span>
+  </a>
 
-  const elDays = document.getElementById('cd-days');
-  const elHours = document.getElementById('cd-hours');
-  const elMins = document.getElementById('cd-mins');
-  const elSecs = document.getElementById('cd-secs');
-  const container = document.getElementById('countdown');
+  <a class="nav-item" href="#calendar" aria-label="Calendar">
+    <!-- calendar -->
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" stroke="#fff" stroke-width="1.2"/><path d="M16 2v4M8 2v4" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/><path d="M3 10h18" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/></svg>
+    <span>CALENDAR</span>
+  </a>
+</nav>
 
-  function tick(){
-    const now = new Date();
-    let diff = Math.max(0, target - now);
-    if(diff <= 0){
-      if(window.innerWidth < 520){
-        container.innerHTML = '<strong style="color:#fff">Majlis Bermula!</strong>';
-      }else{
-        elDays.textContent = '00'; elHours.textContent = '00'; elMins.textContent = '00'; elSecs.textContent = '00';
-      }
-      clearInterval(intervalId);
-      return;
-    }
-    const totalSec = Math.floor(diff / 1000);
-    const days = Math.floor(totalSec / (24 * 3600));
-    const remAfterDays = totalSec - (days * 24 * 3600);
-    const hours = Math.floor(remAfterDays / 3600);
-    const remAfterHours = remAfterDays - (hours * 3600);
-    const mins = Math.floor(remAfterHours / 60);
-    const secs = remAfterHours - (mins * 60);
-
-    elDays.textContent = pad(days); elHours.textContent = pad(hours);
-    elMins.textContent = pad(mins); elSecs.textContent = pad(secs);
-
-    const daysItem = container.querySelector('[data-unit="days"]');
-    if(daysItem){
-      if(days === 0 && window.innerWidth < 520) daysItem.classList.add('hidden'); else daysItem.classList.remove('hidden');
-    }
-  }
-  tick();
-  const intervalId = setInterval(tick, 1000);
-  window.addEventListener('resize', tick);
-}
-startCountdown(CONFIG.dateISO);
-
-/* Modal & RSVP */
-const rsvpBtn = document.getElementById('rsvpBtn');
-const modal = document.getElementById('modalBackdrop');
-const closeModal = document.getElementById('closeModal');
-const cancelForm = document.getElementById('cancelForm');
-const rsvpForm = document.getElementById('rsvpForm');
-const formStatus = document.getElementById('formStatus');
-
-function openModal(){ modal.style.display = 'flex'; modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; document.getElementById('guestName').focus(); }
-function hideModal(){ modal.style.display = 'none'; modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
-
-rsvpBtn.addEventListener('click', openModal);
-closeModal.addEventListener('click', hideModal);
-cancelForm.addEventListener('click', hideModal);
-modal.addEventListener('click', (e)=>{ if(e.target===modal) hideModal(); });
-document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') hideModal(); });
-
-rsvpForm.addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  formStatus.textContent = "Menghantar...";
-
-  const data = {
-    name: rsvpForm.name.value.trim(),
-    email: rsvpForm.email.value.trim(),
-    phone: rsvpForm.phone.value.trim(),
-    attend: rsvpForm.attend.value,
-    message: rsvpForm.message.value.trim(),
-    timeSubmitted: new Date().toISOString()
-  };
-
-  if(CONFIG.rsvpEndpoint){
-    try{
-      const res = await fetch(CONFIG.rsvpEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-rsvp-secret': CONFIG.rsvpSecret
-        },
-        body: JSON.stringify(data)
-      });
-      const j = await res.json().catch(()=>({}));
-      if(res.ok && (j.ok === true || j.message)){
-        formStatus.textContent = "Terima kasih — RSVP telah diterima.";
-        rsvpForm.reset();
-        setTimeout(hideModal,1200);
-      } else {
-        throw new Error(j.error || 'Pelayan tidak menjawab dengan betul');
-      }
-    }catch(err){
-      console.error(err);
-      formStatus.textContent = "Gagal hantar. Sila cuba semula atau hubungi penganjur.";
-    }
-    return;
-  }
-
-  // Mailto fallback
-  const subject = encodeURIComponent(`RSVP: ${data.name} — ${CONFIG.coupleName}`);
-  const body = encodeURIComponent([
-    `Nama: ${data.name}`,
-    `Email: ${data.email}`,
-    `Telefon: ${data.phone}`,
-    `Hadir: ${data.attend}`,
-    `Pesanan: ${data.message}`,
-    `Tarikh Hantar: ${data.timeSubmitted}`
-  ].join('\n'));
-  window.location.href = `mailto:?subject=${subject}&body=${body}`;
-  formStatus.textContent = "Membuka aplikasi e-mel... jika tiada, sila hubungi penganjur.";
-});
-
-/* Share */
-document.getElementById('shareBtn').addEventListener('click', async ()=>{
-  const shareData = {
-    title: `${CONFIG.coupleName} - Jemputan`,
-    text: `Jemputan perkahwinan: ${CONFIG.coupleName} — ${CONFIG.metaText}`,
-    url: window.location.href
-  };
-  if(navigator.share){
-    try { await navigator.share(shareData); } catch(e){ /* ignore */ }
-  } else {
-    await navigator.clipboard.writeText(window.location.href);
-    alert('Pautan disalin ke papan klip.');
-  }
-});
-
-/* ====== YouTube player (attempt autoplay with sound; fallback to muted autoplay) ====== */
-let ytPlayer = null;
-let ytReady = false;
-let isMuted = false;
-const YT_VIDEO_ID = 'JmIUdR_fob0';
-const playBtn = document.getElementById('playMusicBtn');
-
-function onYouTubeIframeAPIReady() {
-  ytPlayer = new YT.Player('yt-player-container', {
-    height: '0',
-    width: '0',
-    videoId: YT_VIDEO_ID,
-    playerVars: {
-      autoplay: 1,
-      controls: 0,
-      mute: 0,            // try to start with sound
-      loop: 1,
-      playlist: YT_VIDEO_ID,
-      modestbranding: 1,
-      rel: 0
-    },
-    events: {
-      onReady: onPlayerReady,
-      onStateChange: onPlayerStateChange,
-      onError: onPlayerError
-    }
-  });
-}
-
-function onPlayerReady(event) {
-  ytReady = true;
-  try { event.target.playVideo(); } catch (err) {}
-  // If autoplay with sound is blocked, fallback to mute autoplay
-  setTimeout(() => {
-    try {
-      const state = ytPlayer.getPlayerState();
-      if (state !== 1) {
-        ytPlayer.mute();
-        isMuted = true;
-        ytPlayer.playVideo();
-        updatePlayButton();
-      } else {
-        isMuted = false;
-        updatePlayButton();
-      }
-    } catch (err) {
-      try { ytPlayer.mute(); isMuted = true; ytPlayer.playVideo(); updatePlayButton(); } catch(e){}
-    }
-  }, 1100);
-}
-
-function onPlayerStateChange(event) { /* placeholder */ }
-function onPlayerError(event) {
-  if (!document.getElementById('yt-fallback')) {
-    const fallback = document.createElement('iframe');
-    fallback.id = 'yt-fallback';
-    fallback.width = '0';
-    fallback.height = '0';
-    fallback.src = `https://www.youtube.com/embed/${YT_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${YT_VIDEO_ID}`;
-    fallback.frameBorder = '0';
-    fallback.allow = 'autoplay; encrypted-media';
-    document.body.appendChild(fallback);
-    isMuted = true;
-    updatePlayButton();
-  }
-}
-
-function updatePlayButton(){
-  if (!playBtn) return;
-  if (isMuted) playBtn.textContent = 'Unmute 🔊'; else playBtn.textContent = 'Mute 🔇';
-}
-
-playBtn.addEventListener('click', () => {
-  if (!ytReady || !ytPlayer) {
-    if (!document.getElementById('yt-fallback')) {
-      const fallback = document.createElement('iframe');
-      fallback.id = 'yt-fallback';
-      fallback.width = '0';
-      fallback.height = '0';
-      fallback.src = `https://www.youtube.com/embed/${YT_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${YT_VIDEO_ID}`;
-      fallback.frameBorder = '0';
-      fallback.allow = 'autoplay; encrypted-media';
-      document.body.appendChild(fallback);
-      isMuted = true;
-      updatePlayButton();
-      return;
-    }
-  }
-  try {
-    if (isMuted) {
-      ytPlayer.unMute(); ytPlayer.playVideo(); isMuted = false;
-    } else {
-      ytPlayer.mute(); isMuted = true;
-    }
-    updatePlayButton();
-  } catch (err) {
-    const fallback = document.getElementById('yt-fallback');
-    if (fallback) {
-      if (isMuted) fallback.src = `https://www.youtube.com/embed/${YT_VIDEO_ID}?autoplay=1&mute=0&loop=1&playlist=${YT_VIDEO_ID}`, isMuted=false;
-      else fallback.src = `https://www.youtube.com/embed/${YT_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${YT_VIDEO_ID}`, isMuted=true;
-      updatePlayButton();
-    }
-  }
-});
-
-window.addEventListener('pagehide', () => { try { if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo(); } catch(e){} });
-</script>
+<!-- optional device label (like screenshot) -->
+<div class="device-label">iPhone 14 preview</div>
 
 </body>
 </html>
