@@ -32,7 +32,7 @@ body{background:var(--bg); color:#fff; line-height:1.45;}
 /* Container */
 .container{width:100%; max-width:var(--maxw); margin:0 auto; padding:18px;}
 
-/* HERO - mobile friendly */
+/* HERO */
 .hero{
   min-height:calc(100vh - 24px);
   display:flex;
@@ -70,7 +70,7 @@ body{background:var(--bg); color:#fff; line-height:1.45;}
 }
 .meta{font-size:14px; color:var(--muted)}
 
-/* Countdown (compact & accessible) */
+/* Countdown */
 .countdown{
   display:flex;
   gap:10px;
@@ -90,7 +90,7 @@ body{background:var(--bg); color:#fff; line-height:1.45;}
 .countdown .num{font-weight:700; font-size:18px; color:#fff}
 .countdown .label{font-size:12px; color:rgba(255,255,255,0.9); margin-top:4px}
 
-/* Actions (touch-friendly) */
+/* Actions */
 .actions{display:flex; gap:10px; margin-top:12px; flex-wrap:wrap}
 .btn{
   display:inline-flex; align-items:center; justify-content:center; gap:8px;
@@ -104,7 +104,7 @@ body{background:var(--bg); color:#fff; line-height:1.45;}
 }
 .btn:active{transform:translateY(1px)}
 
-/* Thumbnail / portrait */
+/* Thumbnail */
 .thumb{width:100%; height:220px; border-radius:10px; overflow:hidden; background:rgba(255,255,255,0.02)}
 .thumb img{width:100%; height:100%; object-fit:cover; display:block}
 
@@ -116,11 +116,7 @@ body{background:var(--bg); color:#fff; line-height:1.45;}
 .map{width:100%; height:220px; border-radius:10px; overflow:hidden; border:1px solid rgba(255,255,255,0.04); margin-top:10px}
 .map iframe{width:100%; height:100%; border:0}
 
-/* Aside info */
-.aside{margin-top:12px; display:flex; gap:10px; flex-direction:column}
-.badge{display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.03); font-size:12px; color:var(--muted)}
-
-/* Modal (full-screen on mobile) */
+/* Modal */
 .modal-backdrop{position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:40; background:rgba(0,0,0,0.6); padding:20px}
 .modal{width:100%; max-width:680px; background:#0f0f10; border-radius:12px; padding:16px; box-shadow:0 24px 60px rgba(0,0,0,0.65)}
 .form-row{display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap}
@@ -131,7 +127,7 @@ input[type="text"], input[type="email"], textarea, select{width:100%; padding:10
 /* Footer */
 .footer{padding:16px; text-align:center; color:var(--muted); font-size:13px;}
 
-/* Larger screens (tablet & desktop) */
+/* Larger screens */
 @media (min-width:880px){
   .hero{align-items:center; padding:48px 20px}
   .card{flex-direction:row; align-items:center; gap:22px; padding:24px}
@@ -172,7 +168,7 @@ input[type="text"], input[type="email"], textarea, select{width:100%; padding:10
         <div class="actions" role="toolbar" aria-label="Tindakan">
           <button class="btn btn-primary" id="rsvpBtn" aria-haspopup="dialog">RSVP</button>
           <a class="btn" href="#detail" role="button">Butiran Majlis</a>
-          <button class="btn" id="playMusicBtn" title="Main / Henti muzik">Main muzik</button>
+          <button class="btn hidden" id="playMusicBtn" title="Main / Henti muzik">Main muzik</button>
         </div>
       </div>
 
@@ -197,7 +193,7 @@ input[type="text"], input[type="email"], textarea, select{width:100%; padding:10
       <p class="badges"><span class="badge">White House Event Space, Dungun</span></p>
 
       <div class="map" id="mapWrap" aria-hidden="false">
-        <!-- Responsive embed -->
+        <!-- Embed map (search query) -->
         <iframe id="gmap"
           src="https://www.google.com/maps?q=White+House+Event+Space+Dungun&output=embed"
           loading="lazy" referrerpolicy="no-referrer-when-downgrade" aria-label="Peta lokasi"></iframe>
@@ -209,11 +205,11 @@ input[type="text"], input[type="email"], textarea, select{width:100%; padding:10
         </div>
       </div>
 
-      <div class="aside">
+      <div class="aside" style="margin-top:12px">
         <div><strong style="color:#fff">Maklumat Tambahan</strong></div>
         <div style="color:var(--muted)">Pakaian: Sopan. Had umur: Semua dialu-alukan.</div>
         <div style="color:var(--muted)"><strong>Hubungi:</strong> +60 12-345 6789 (Isma)</div>
-        <div>
+        <div style="margin-top:8px">
           <button class="btn" id="shareBtn">Kongsi Jemputan</button>
         </div>
       </div>
@@ -274,33 +270,44 @@ input[type="text"], input[type="email"], textarea, select{width:100%; padding:10
   <footer class="footer">Terima kasih — Kami tak sabar nak berjumpa anda! 🌺</footer>
 </div>
 
-<!-- Audio (optional) -->
-<audio id="bgMusic" loop preload="none">
-  <source src="assets/music.mp3" type="audio/mpeg">
-</audio>
+<!-- ===== YouTube autoplay (mute) - Option 3 ===== -->
+<!-- This will autoplay muted when the page loads (reliable across browsers) -->
+<iframe
+  width="0"
+  height="0"
+  src="https://www.youtube.com/embed/JmIUdR_fob0?autoplay=1&mute=1&loop=1&playlist=JmIUdR_fob0"
+  frameborder="0"
+  allow="autoplay; encrypted-media"
+  allowfullscreen>
+</iframe>
 
 <script>
-/* ========== CONFIG ========== */
+/* ================= CONFIG =================
+   - Set rsvpEndpoint to your deployed Apps Script Web App URL (or leave empty for mailto fallback)
+   - Set rsvpSecret to the secret token you used in Apps Script (must match)
+*/
 const CONFIG = {
   coupleName: "Isma & Fikri",
-  // Countdown set to 3 Jan 2026 08:00 Malaysia time
+  // Countdown target (3 Jan 2026, 08:00 Malaysia time)
   dateISO: "2026-01-03T08:00:00+08:00",
   metaText: "Sabtu, 03 Januari 2026 • White House Event Space, Dungun",
   heroImage: "assets/hero.jpg",
   coupleImage: "assets/couple.jpg",
-  musicAutoPlay: false,
-  musicFile: "assets/music.mp3",
-  rsvpEndpoint: "", // optional webhook
+  // If you have deployed Apps Script web app, paste URL here:
+  // Example: "https://script.google.com/macros/s/AKfycbx.../exec"
+  rsvpEndpoint: "",
+
+  // The secret token (must match SECRET_TOKEN in your Apps Script)
+  rsvpSecret: "gembira2026!"
 };
-/* ========== INIT UI ========== */
+/* ========================================= */
+
 document.getElementById('coupleName').textContent = CONFIG.coupleName;
 document.getElementById('metaText').textContent = CONFIG.metaText;
 document.querySelector('.hero').style.backgroundImage = `linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0.48)), url('${CONFIG.heroImage}')`;
 document.querySelector('.thumb img').src = CONFIG.coupleImage;
-document.querySelector('#bgMusic source').src = CONFIG.musicFile;
-document.getElementById('bgMusic').load();
 
-/* ========== Countdown (mobile friendly) ========== */
+/* ========== Countdown ========== */
 function pad(n){ return String(n).padStart(2,'0'); }
 function startCountdown(targetISO){
   const target = new Date(targetISO);
@@ -316,7 +323,6 @@ function startCountdown(targetISO){
     const now = new Date();
     let diff = Math.max(0, target - now);
     if(diff <= 0){
-      // replace countdown with message on small screens
       if(window.innerWidth < 520){
         container.innerHTML = '<strong style="color:#fff">Majlis Bermula!</strong>';
       }else{
@@ -336,18 +342,18 @@ function startCountdown(targetISO){
     elDays.textContent = pad(days); elHours.textContent = pad(hours);
     elMins.textContent = pad(mins); elSecs.textContent = pad(secs);
 
-    // hide days on compact screens if zero
     const daysItem = container.querySelector('[data-unit="days"]');
-    if(daysItem){ if(days === 0 && window.innerWidth < 520) daysItem.classList.add('hidden'); else daysItem.classList.remove('hidden'); }
+    if(daysItem){
+      if(days === 0 && window.innerWidth < 520) daysItem.classList.add('hidden'); else daysItem.classList.remove('hidden');
+    }
   }
   tick();
   const intervalId = setInterval(tick, 1000);
-  // update hide/show when viewport changes
   window.addEventListener('resize', tick);
 }
 startCountdown(CONFIG.dateISO);
 
-/* ========== Modal / RSVP ========== */
+/* ========== Modal & RSVP ========== */
 const rsvpBtn = document.getElementById('rsvpBtn');
 const modal = document.getElementById('modalBackdrop');
 const closeModal = document.getElementById('closeModal');
@@ -364,9 +370,11 @@ cancelForm.addEventListener('click', hideModal);
 modal.addEventListener('click', (e)=>{ if(e.target===modal) hideModal(); });
 document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') hideModal(); });
 
+/* Form submit: POST to Apps Script if endpoint set; else mailto fallback */
 rsvpForm.addEventListener('submit', async (e)=>{
   e.preventDefault();
   formStatus.textContent = "Menghantar...";
+
   const data = {
     name: rsvpForm.name.value.trim(),
     email: rsvpForm.email.value.trim(),
@@ -375,33 +383,61 @@ rsvpForm.addEventListener('submit', async (e)=>{
     message: rsvpForm.message.value.trim(),
     timeSubmitted: new Date().toISOString()
   };
+
   if(CONFIG.rsvpEndpoint){
     try{
-      const res = await fetch(CONFIG.rsvpEndpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
-      if(res.ok){ formStatus.textContent="Terima kasih — RSVP diterima."; rsvpForm.reset(); setTimeout(hideModal,1200); } else throw new Error('HTTP '+res.status);
-    }catch(err){ formStatus.textContent="Gagal hantar. Sila cuba semula."; console.error(err); }
+      const res = await fetch(CONFIG.rsvpEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-rsvp-secret': CONFIG.rsvpSecret
+        },
+        body: JSON.stringify(data)
+      });
+      const j = await res.json().catch(()=>({}));
+      if(res.ok && (j.ok === true || j.message)){
+        formStatus.textContent = "Terima kasih — RSVP telah diterima.";
+        rsvpForm.reset();
+        setTimeout(hideModal,1200);
+      } else {
+        throw new Error(j.error || 'Pelayan tidak menjawab dengan betul');
+      }
+    }catch(err){
+      console.error(err);
+      formStatus.textContent = "Gagal hantar. Sila cuba semula atau hubungi penganjur.";
+    }
     return;
   }
+
+  // Mailto fallback
   const subject = encodeURIComponent(`RSVP: ${data.name} — ${CONFIG.coupleName}`);
-  const body = encodeURIComponent([`Nama: ${data.name}`, `Email: ${data.email}`, `Telefon: ${data.phone}`, `Hadir: ${data.attend}`, `Pesanan: ${data.message}`, `Tarikh Hantar: ${data.timeSubmitted}`].join('\n'));
+  const body = encodeURIComponent([
+    `Nama: ${data.name}`,
+    `Email: ${data.email}`,
+    `Telefon: ${data.phone}`,
+    `Hadir: ${data.attend}`,
+    `Pesanan: ${data.message}`,
+    `Tarikh Hantar: ${data.timeSubmitted}`
+  ].join('\n'));
   window.location.href = `mailto:?subject=${subject}&body=${body}`;
-  formStatus.textContent = "Membuka aplikasi e-mel...";
+  formStatus.textContent = "Membuka aplikasi e-mel... jika tiada, sila hubungi penganjur.";
 });
 
 /* ========== Share ========== */
 document.getElementById('shareBtn').addEventListener('click', async ()=>{
-  const shareData = { title: `${CONFIG.coupleName} - Jemputan`, text: `Jemputan perkahwinan: ${CONFIG.coupleName} — ${CONFIG.metaText}`, url: window.location.href };
-  if(navigator.share){ try { await navigator.share(shareData); } catch(e){ /* ignore */ } } else { await navigator.clipboard.writeText(window.location.href); alert('Pautan disalin ke papan klip.'); }
+  const shareData = {
+    title: `${CONFIG.coupleName} - Jemputan`,
+    text: `Jemputan perkahwinan: ${CONFIG.coupleName} — ${CONFIG.metaText}`,
+    url: window.location.href
+  };
+  if(navigator.share){
+    try { await navigator.share(shareData); } catch(e){ /* ignore */ }
+  } else {
+    await navigator.clipboard.writeText(window.location.href);
+    alert('Pautan disalin ke papan klip.');
+  }
 });
-
-/* ========== Music ========== */
-const bgMusic = document.getElementById('bgMusic');
-const playMusicBtn = document.getElementById('playMusicBtn');
-let musicPlaying = false;
-playMusicBtn.addEventListener('click', async ()=>{
-  if(!musicPlaying){ try{ await bgMusic.play(); musicPlaying=true; playMusicBtn.textContent='Henti muzik'; }catch(e){ alert('Autoplay disekat — tekan main sekali lagi.'); } } else { bgMusic.pause(); musicPlaying=false; playMusicBtn.textContent='Main muzik'; }
-});
-if(CONFIG.musicAutoPlay){ bgMusic.play().then(()=>{ musicPlaying=true; playMusicBtn.textContent='Henti muzik'; }).catch(()=>{/* blocked */}); }
 </script>
+
 </body>
 </html>
