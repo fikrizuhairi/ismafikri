@@ -2,337 +2,277 @@
 <html lang="ms">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
 <title>Walimatulurus - Isma & Fikri</title>
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
+/* ========== MOBILE-FIRST STYLES ========== */
 :root{
-  --bg-overlay: rgba(8,7,12,0.45);
+  --bg: #060607;
+  --card: rgba(255,255,255,0.03);
   --accent: #f8d7b6;
   --muted: #cfcfd3;
-  --glass: rgba(255,255,255,0.06);
-  --radius: 14px;
+  --glass: rgba(255,255,255,0.04);
+  --radius: 12px;
+  --gap: 14px;
+  --btn-h: 48px;
   --maxw: 980px;
-  --transition: 300ms cubic-bezier(.2,.9,.2,1);
-  --font-sans: "Poppins",system-ui,-apple-system,"Segoe UI",Roboto, "Helvetica Neue", Arial;
+  --font-sans: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   --font-script: "Great Vibes", cursive;
 }
 
+/* Reset */
 *{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:var(--font-sans);
-  color:#fff;
-  background:#000;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  line-height:1.45;
-}
+html,body{height:100%; margin:0; font-family:var(--font-sans); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+body{background:var(--bg); color:#fff; line-height:1.45;}
 
-/* Hero */
+/* Container */
+.container{width:100%; max-width:var(--maxw); margin:0 auto; padding:18px;}
+
+/* HERO - mobile friendly */
 .hero{
-  position:relative;
-  min-height:100vh;
+  min-height:calc(100vh - 24px);
   display:flex;
-  align-items:center;
+  align-items:flex-start;
   justify-content:center;
-  padding:48px 20px;
-  background-image: url('assets/hero.jpg'); /* <-- ganti dengan imej anda */
+  padding-top:28px;
+  padding-bottom:28px;
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0.48)), url('assets/hero.jpg');
   background-size:cover;
   background-position:center;
-  background-repeat:no-repeat;
-  text-align:center;
-}
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.55));
-  z-index:0;
-}
-.container{
-  position:relative;
-  z-index:2;
-  width:100%;
-  max-width:var(--maxw);
-}
-
-/* card */
-.card{
-  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-  border-radius: var(--radius);
-  padding:28px;
-  backdrop-filter: blur(6px) saturate(120%);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-  display:flex;
-  gap:28px;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-}
-
-/* left text */
-.invite-text{
-  flex:1 1 420px;
-  min-width:260px;
   text-align:left;
-  color:var(--accent);
 }
-.logo-label{font-size:14px; color:var(--muted); margin-bottom:8px}
+
+/* Card (stack on mobile) */
+.card{
+  width:100%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:var(--radius);
+  padding:16px;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.5);
+  display:flex;
+  flex-direction:column;
+  gap:var(--gap);
+  backdrop-filter: blur(4px);
+}
+
+/* Top row (text) */
+.logo-label{font-size:13px; color:var(--muted); margin-bottom:6px}
 .couple{
   font-family:var(--font-script);
-  font-size:48px;
+  font-size:34px;
   color:#fff;
-  margin:6px 0 4px;
-  letter-spacing:0.6px;
+  margin:2px 0 4px;
+  line-height:1.05;
 }
-.meta{
-  color:var(--muted);
-  font-size:15px;
-  margin-bottom:12px;
-}
+.meta{font-size:14px; color:var(--muted)}
 
-/* right box image */
-.thumb{
-  width:240px;
-  height:240px;
-  border-radius:12px;
-  overflow:hidden;
-  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  flex:0 0 240px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border:1px solid rgba(255,255,255,0.06);
-}
-.thumb img{width:100%; height:100%; object-fit:cover; display:block;}
-
-/* buttons */
-.actions{margin-top:14px; display:flex; gap:12px; flex-wrap:wrap}
-.btn{
-  border:0;
-  padding:10px 16px;
-  border-radius:10px;
-  font-weight:600;
-  cursor:pointer;
-  transition:all var(--transition);
-  background:transparent;
-  color:var(--accent);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
-}
-.btn:hover{transform:translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,0.45)}
-.btn-primary{
-  background:linear-gradient(90deg,#ffcfb0,#ffd4a2);
-  color:#2b1b10;
-  padding:10px 18px;
-}
-
-/* countdown */
+/* Countdown (compact & accessible) */
 .countdown{
-  margin-top:18px;
   display:flex;
-  gap:12px;
-  align-items:center;
-  color:var(--muted);
-  font-size:14px;
+  gap:10px;
+  margin-top:10px;
+  flex-wrap:wrap;
 }
-.countdown .item{background:var(--glass); padding:10px 12px; border-radius:8px; min-width:64px; text-align:center}
-.countdown .num{font-weight:700; font-size:18px; color:#fff; display:block}
-
-/* detail section */
-.section{
-  padding:42px 20px;
-  display:flex;
-  justify-content:center;
-}
-.card-inner{
-  width:100%;
-  max-width:var(--maxw);
-  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border-radius:12px;
-  padding:22px;
-  color:var(--muted);
-  box-shadow:0 6px 24px rgba(0,0,0,0.45);
-}
-
-/* two-col */
-.row{
-  display:grid;
-  grid-template-columns: 1fr 320px;
-  gap:20px;
-}
-@media (max-width:880px){
-  .row{grid-template-columns: 1fr}
-  .thumb{width:180px; height:180px}
-  .couple{font-size:40px}
-}
-
-/* map */
-.map{
-  width:100%;
-  height:220px;
+.countdown .item{
+  min-width:56px;
+  padding:10px;
   border-radius:10px;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,0.04);
+  background:var(--glass);
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
+.countdown .num{font-weight:700; font-size:18px; color:#fff}
+.countdown .label{font-size:12px; color:rgba(255,255,255,0.9); margin-top:4px}
 
-/* modal */
-.modal-backdrop{
-  position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:40;
-  background:rgba(0,0,0,0.6);
+/* Actions (touch-friendly) */
+.actions{display:flex; gap:10px; margin-top:12px; flex-wrap:wrap}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  height:var(--btn-h); padding:0 16px; border-radius:10px; border:0;
+  font-weight:600; cursor:pointer; text-decoration:none; color:var(--accent);
+  background:transparent; min-width:110px;
 }
-.modal{
-  width:100%;
-  max-width:520px;
-  background:#0f0f10;
-  border-radius:12px;
-  padding:18px;
-  box-shadow:0 24px 60px rgba(0,0,0,0.65);
-  border:1px solid rgba(255,255,255,0.04);
+.btn-primary{
+  background:linear-gradient(90deg,#ffcfb0,#ffd4a2); color:#2b1b10;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
 }
-.form-row{display:flex; gap:8px; margin-bottom:12px}
-.form-row .field{flex:1}
-label{display:block; font-size:13px; margin-bottom:6px; color:var(--muted)}
-input[type="text"], input[type="email"], textarea, select{
-  width:100%; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06);
-  background:transparent; color:#fff; outline:none; font-size:14px;
-}
-textarea{min-height:96px; resize:vertical}
+.btn:active{transform:translateY(1px)}
 
-/* footer */
-.footer{padding:20px; text-align:center; color:var(--muted); font-size:13px}
+/* Thumbnail / portrait */
+.thumb{width:100%; height:220px; border-radius:10px; overflow:hidden; background:rgba(255,255,255,0.02)}
+.thumb img{width:100%; height:100%; object-fit:cover; display:block}
 
-/* small helpers */
+/* DETAILS section */
+.section{padding:18px; display:block}
+.card-inner{background:var(--card); border-radius:12px; padding:14px; color:var(--muted)}
+
+/* Map responsive */
+.map{width:100%; height:220px; border-radius:10px; overflow:hidden; border:1px solid rgba(255,255,255,0.04); margin-top:10px}
+.map iframe{width:100%; height:100%; border:0}
+
+/* Aside info */
+.aside{margin-top:12px; display:flex; gap:10px; flex-direction:column}
 .badge{display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.03); font-size:12px; color:var(--muted)}
-.icon{opacity:0.9; margin-right:8px}
-.hidden{display:none}
+
+/* Modal (full-screen on mobile) */
+.modal-backdrop{position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:40; background:rgba(0,0,0,0.6); padding:20px}
+.modal{width:100%; max-width:680px; background:#0f0f10; border-radius:12px; padding:16px; box-shadow:0 24px 60px rgba(0,0,0,0.65)}
+.form-row{display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap}
+.form-row .field{flex:1 1 160px; min-width:120px}
+label{display:block; font-size:13px; margin-bottom:6px; color:var(--muted)}
+input[type="text"], input[type="email"], textarea, select{width:100%; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:transparent; color:#fff}
+
+/* Footer */
+.footer{padding:16px; text-align:center; color:var(--muted); font-size:13px;}
+
+/* Larger screens (tablet & desktop) */
+@media (min-width:880px){
+  .hero{align-items:center; padding:48px 20px}
+  .card{flex-direction:row; align-items:center; gap:22px; padding:24px}
+  .invite-text{flex:1}
+  .thumb{width:240px; height:240px; flex:0 0 240px}
+  .couple{font-size:48px}
+  .map{height:260px}
+  .actions{justify-content:flex-start}
+}
+
+/* Accessibility focus */
+.btn:focus, a:focus, input:focus, textarea:focus{outline:3px solid rgba(255,220,160,0.12); outline-offset:2px}
+
+/* Utility hidden */
+.hidden{display:none !important}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
-<section class="hero" id="hero">
-  <div class="container">
-    <div class="card" role="region" aria-label="Jemputan Utama">
+<div class="container">
+  <!-- HERO -->
+  <section class="hero" id="hero" aria-label="Jemputan utama">
+    <div class="card" role="region" aria-label="Kad jemputan">
       <div class="invite-text">
         <div class="logo-label">Dengan nama Allah, kami menjemput anda</div>
         <div class="couple" id="coupleName">Isma & Fikri</div>
         <div class="meta" id="metaText">Sabtu, 03 Januari 2026 • White House Event Space, Dungun</div>
 
-        <div class="countdown" aria-live="polite" aria-atomic="true">
-          <div class="item"><span class="num" id="cd-days">00</span><span style="font-size:12px">Hari</span></div>
-          <div class="item"><span class="num" id="cd-hours">00</span><span style="font-size:12px">Jam</span></div>
-          <div class="item"><span class="num" id="cd-mins">00</span><span style="font-size:12px">Minit</span></div>
-          <div class="item"><span class="num" id="cd-secs">00</span><span style="font-size:12px">Saat</span></div>
+        <!-- Countdown -->
+        <div class="countdown" id="countdown" aria-live="polite" aria-atomic="true">
+          <div class="item" data-unit="days"><span class="num" id="cd-days">00</span><span class="label">Hari</span></div>
+          <div class="item" data-unit="hours"><span class="num" id="cd-hours">00</span><span class="label">Jam</span></div>
+          <div class="item" data-unit="mins"><span class="num" id="cd-mins">00</span><span class="label">Minit</span></div>
+          <div class="item" data-unit="secs"><span class="num" id="cd-secs">00</span><span class="label">Saat</span></div>
         </div>
 
-        <div class="actions">
+        <!-- Actions -->
+        <div class="actions" role="toolbar" aria-label="Tindakan">
           <button class="btn btn-primary" id="rsvpBtn" aria-haspopup="dialog">RSVP</button>
           <a class="btn" href="#detail" role="button">Butiran Majlis</a>
           <button class="btn" id="playMusicBtn" title="Main / Henti muzik">Main muzik</button>
         </div>
       </div>
 
+      <!-- Thumb image -->
       <div class="thumb" aria-hidden="false">
-        <img src="assets/couple.jpg" alt="Pasangan - Isma & Fikri">
+        <img src="assets/couple.jpg" alt="Pasangan - Isma & Fikri" loading="lazy">
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- DETAILS -->
-<section id="detail" class="section">
-  <div class="card-inner">
-    <div class="row">
-      <div>
-        <h3 style="color:#fff; margin-top:0">Aturcara</h3>
-        <p><strong>Akad:</strong> 8:00 pagi — White House Event Space, Dungun</p>
-        <p><strong>Majlis Makan:</strong> 11:00 tengahari — White House Event Space, Dungun</p>
-        <p>Kami amat menghargai kehadiran anda. Sila sahkan kehadiran melalui borang RSVP.</p>
+  <!-- DETAILS -->
+  <section id="detail" class="section" aria-label="Butiran majlis">
+    <div class="card-inner">
+      <h3 style="color:#fff; margin-top:0">Aturcara</h3>
+      <p><strong>Akad:</strong> 8:00 pagi — White House Event Space, Dungun</p>
+      <p><strong>Majlis Makan:</strong> 11:00 tengahari — White House Event Space, Dungun</p>
+      <p>Kami amat menghargai kehadiran anda. Sila sahkan kehadiran melalui borang RSVP.</p>
 
-        <hr style="border:none; height:1px; background:rgba(255,255,255,0.03); margin:16px 0">
+      <hr style="border:none; height:1px; background:rgba(255,255,255,0.03); margin:14px 0">
 
-        <h4 style="color:#fff">Lokasi</h4>
-        <p class="badges"><span class="badge">White House Event Space, Dungun</span> </p>
+      <h4 style="color:#fff">Lokasi</h4>
+      <p class="badges"><span class="badge">White House Event Space, Dungun</span></p>
 
-        <div style="margin-top:12px" class="map" id="mapWrap">
-          <!-- Embedded Google Maps iframe: ganti src sesuai lokasi anda -->
-          <iframe id="gmap"
-            src="https://maps.app.goo.gl/Z2F3c86dVen1ciR29"
-            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      <div class="map" id="mapWrap" aria-hidden="false">
+        <!-- Responsive embed -->
+        <iframe id="gmap"
+          src="https://www.google.com/maps?q=White+House+Event+Space+Dungun&output=embed"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade" aria-label="Peta lokasi"></iframe>
+
+        <div style="text-align:center; margin-top:10px;">
+          <a href="https://maps.app.goo.gl/Z2F3c86dVen1ciR29" target="_blank" rel="noopener" class="btn btn-primary" aria-label="Buka lokasi dalam Google Maps">
+            📍 Buka dalam Google Maps
+          </a>
         </div>
-
       </div>
 
-      <aside>
-        <h4 style="color:#fff; margin-top:0">Maklumat Tambahan</h4>
-        <p style="color:var(--muted)">Pakaian: Sopan. Had umur: Semua dialu-alukan.</p>
-        <p style="color:var(--muted)"><strong>Hubungi:</strong> +60 12-345 6789 (Isma)</p>
-
-        <div style="margin-top:18px">
+      <div class="aside">
+        <div><strong style="color:#fff">Maklumat Tambahan</strong></div>
+        <div style="color:var(--muted)">Pakaian: Sopan. Had umur: Semua dialu-alukan.</div>
+        <div style="color:var(--muted)"><strong>Hubungi:</strong> +60 12-345 6789 (Isma)</div>
+        <div>
           <button class="btn" id="shareBtn">Kongsi Jemputan</button>
         </div>
-      </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP Modal -->
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document" aria-labelledby="rsvpTitle">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px">
+        <strong id="rsvpTitle" style="font-size:16px">Borang RSVP</strong>
+        <button class="btn" id="closeModal" aria-label="Tutup borang">Tutup</button>
+      </div>
+
+      <form id="rsvpForm">
+        <div class="form-row">
+          <div class="field">
+            <label for="guestName">Nama</label>
+            <input id="guestName" name="name" type="text" placeholder="Nama penuh" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="guestEmail">Email (pilihan)</label>
+            <input id="guestEmail" name="email" type="email" placeholder="contoh@mail.com">
+          </div>
+          <div class="field">
+            <label for="guestPhone">Telefon</label>
+            <input id="guestPhone" name="phone" type="text" placeholder="+60 12-345 6789" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="willAttend">Hadir?</label>
+            <select id="willAttend" name="attend" required>
+              <option value="yes">Ya, saya akan hadir</option>
+              <option value="no">Maaf, tidak dapat hadir</option>
+              <option value="maybe">Belum pasti</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="msg">Pesanan / Permintaan</label>
+        <textarea id="msg" name="message" placeholder="Ada keperluan khas?"></textarea>
+
+        <div style="margin-top:12px; display:flex; gap:8px; justify-content:flex-end">
+          <button type="button" class="btn" id="cancelForm">Batal</button>
+          <button type="submit" class="btn btn-primary">Hantar RSVP</button>
+        </div>
+
+        <p id="formStatus" style="margin-top:10px; color:var(--muted); font-size:13px"></p>
+      </form>
     </div>
   </div>
-</section>
 
-<!-- RSVP Modal -->
-<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
-  <div class="modal" role="document">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px">
-      <strong style="font-size:16px">Borang RSVP</strong>
-      <button class="btn" id="closeModal">Tutup</button>
-    </div>
-
-    <form id="rsvpForm">
-      <div class="form-row">
-        <div class="field">
-          <label for="guestName">Nama</label>
-          <input id="guestName" name="name" type="text" placeholder="Nama penuh" required>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="field">
-          <label for="guestEmail">Email (pilihan)</label>
-          <input id="guestEmail" name="email" type="email" placeholder="contoh@mail.com">
-        </div>
-        <div class="field">
-          <label for="guestPhone">Telefon</label>
-          <input id="guestPhone" name="phone" type="text" placeholder="+60 12-345 6789" required>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="field">
-          <label for="willAttend">Hadir?</label>
-          <select id="willAttend" name="attend" required>
-            <option value="yes">Ya, saya akan hadir</option>
-            <option value="no">Maaf, tidak dapat hadir</option>
-            <option value="maybe">Belum pasti</option>
-          </select>
-        </div>
-      </div>
-
-      <label for="msg">Pesanan / Permintaan</label>
-      <textarea id="msg" name="message" placeholder="Ada keperluan khas?"></textarea>
-
-      <div style="margin-top:12px; display:flex; gap:8px; justify-content:flex-end">
-        <button type="button" class="btn" id="cancelForm">Batal</button>
-        <button type="submit" class="btn btn-primary">Hantar RSVP</button>
-      </div>
-
-      <p id="formStatus" style="margin-top:10px; color:var(--muted); font-size:13px"></p>
-    </form>
-  </div>
+  <footer class="footer">Terima kasih — Kami tak sabar nak berjumpa anda! 🌺</footer>
 </div>
-
-<footer class="footer">Terima kasih — Kami tak sabar nak berjumpa anda! 🌺</footer>
 
 <!-- Audio (optional) -->
 <audio id="bgMusic" loop preload="none">
@@ -340,53 +280,74 @@ textarea{min-height:96px; resize:vertical}
 </audio>
 
 <script>
-/* ========== CONFIGURE HERE ========== */
-/* Ganti nilai di bawah mengikut majlis anda */
+/* ========== CONFIG ========== */
 const CONFIG = {
   coupleName: "Isma & Fikri",
-  dateISO: "2025-02-15T10:00:00+08:00", // ISO datetime (change to majlis anda)
+  // Countdown set to 3 Jan 2026 08:00 Malaysia time
+  dateISO: "2026-01-03T08:00:00+08:00",
   metaText: "Sabtu, 03 Januari 2026 • White House Event Space, Dungun",
   heroImage: "assets/hero.jpg",
   coupleImage: "assets/couple.jpg",
   musicAutoPlay: false,
   musicFile: "assets/music.mp3",
-  rsvpEndpoint: "", // optional: webhook URL (Formspree / Google Apps Script / server endpoint). If blank, form will create mailto fallback.
+  rsvpEndpoint: "", // optional webhook
 };
-/* ===================================== */
-
+/* ========== INIT UI ========== */
 document.getElementById('coupleName').textContent = CONFIG.coupleName;
 document.getElementById('metaText').textContent = CONFIG.metaText;
-document.querySelector('.hero').style.backgroundImage = `url('${CONFIG.heroImage}')`;
+document.querySelector('.hero').style.backgroundImage = `linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0.48)), url('${CONFIG.heroImage}')`;
 document.querySelector('.thumb img').src = CONFIG.coupleImage;
 document.querySelector('#bgMusic source').src = CONFIG.musicFile;
 document.getElementById('bgMusic').load();
 
-/* Countdown */
-function updateCountdown(){
-  const target = new Date(CONFIG.dateISO);
-  const now = new Date();
-  const diff = target - now;
-  if(diff <= 0){
-    document.getElementById('cd-days').textContent = '00';
-    document.getElementById('cd-hours').textContent = '00';
-    document.getElementById('cd-mins').textContent = '00';
-    document.getElementById('cd-secs').textContent = '00';
-    return;
-  }
-  const secs = Math.floor(diff/1000);
-  const days = Math.floor(secs / (3600*24));
-  const hours = Math.floor((secs % (3600*24)) / 3600);
-  const mins = Math.floor((secs % 3600) / 60);
-  const s = secs % 60;
-  document.getElementById('cd-days').textContent = String(days).padStart(2,'0');
-  document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
-  document.getElementById('cd-mins').textContent = String(mins).padStart(2,'0');
-  document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
-}
-updateCountdown();
-setInterval(updateCountdown, 1000);
+/* ========== Countdown (mobile friendly) ========== */
+function pad(n){ return String(n).padStart(2,'0'); }
+function startCountdown(targetISO){
+  const target = new Date(targetISO);
+  if(Number.isNaN(target.getTime())){ console.warn('Invalid date:', targetISO); return; }
 
-/* Modal & RSVP form handling */
+  const elDays = document.getElementById('cd-days');
+  const elHours = document.getElementById('cd-hours');
+  const elMins = document.getElementById('cd-mins');
+  const elSecs = document.getElementById('cd-secs');
+  const container = document.getElementById('countdown');
+
+  function tick(){
+    const now = new Date();
+    let diff = Math.max(0, target - now);
+    if(diff <= 0){
+      // replace countdown with message on small screens
+      if(window.innerWidth < 520){
+        container.innerHTML = '<strong style="color:#fff">Majlis Bermula!</strong>';
+      }else{
+        elDays.textContent = '00'; elHours.textContent = '00'; elMins.textContent = '00'; elSecs.textContent = '00';
+      }
+      clearInterval(intervalId);
+      return;
+    }
+    const totalSec = Math.floor(diff / 1000);
+    const days = Math.floor(totalSec / (24 * 3600));
+    const remAfterDays = totalSec - (days * 24 * 3600);
+    const hours = Math.floor(remAfterDays / 3600);
+    const remAfterHours = remAfterDays - (hours * 3600);
+    const mins = Math.floor(remAfterHours / 60);
+    const secs = remAfterHours - (mins * 60);
+
+    elDays.textContent = pad(days); elHours.textContent = pad(hours);
+    elMins.textContent = pad(mins); elSecs.textContent = pad(secs);
+
+    // hide days on compact screens if zero
+    const daysItem = container.querySelector('[data-unit="days"]');
+    if(daysItem){ if(days === 0 && window.innerWidth < 520) daysItem.classList.add('hidden'); else daysItem.classList.remove('hidden'); }
+  }
+  tick();
+  const intervalId = setInterval(tick, 1000);
+  // update hide/show when viewport changes
+  window.addEventListener('resize', tick);
+}
+startCountdown(CONFIG.dateISO);
+
+/* ========== Modal / RSVP ========== */
 const rsvpBtn = document.getElementById('rsvpBtn');
 const modal = document.getElementById('modalBackdrop');
 const closeModal = document.getElementById('closeModal');
@@ -394,28 +355,18 @@ const cancelForm = document.getElementById('cancelForm');
 const rsvpForm = document.getElementById('rsvpForm');
 const formStatus = document.getElementById('formStatus');
 
-function openModal(){
-  modal.style.display = 'flex';
-  modal.setAttribute('aria-hidden','false');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('guestName').focus();
-}
-function hideModal(){
-  modal.style.display = 'none';
-  modal.setAttribute('aria-hidden','true');
-  document.body.style.overflow = '';
-}
+function openModal(){ modal.style.display = 'flex'; modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; document.getElementById('guestName').focus(); }
+function hideModal(){ modal.style.display = 'none'; modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
 
 rsvpBtn.addEventListener('click', openModal);
 closeModal.addEventListener('click', hideModal);
 cancelForm.addEventListener('click', hideModal);
 modal.addEventListener('click', (e)=>{ if(e.target===modal) hideModal(); });
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') hideModal(); });
 
-/* Form submit: tries to POST to rsvpEndpoint if set; otherwise mailto fallback */
 rsvpForm.addEventListener('submit', async (e)=>{
   e.preventDefault();
   formStatus.textContent = "Menghantar...";
-
   const data = {
     name: rsvpForm.name.value.trim(),
     email: rsvpForm.email.value.trim(),
@@ -424,90 +375,33 @@ rsvpForm.addEventListener('submit', async (e)=>{
     message: rsvpForm.message.value.trim(),
     timeSubmitted: new Date().toISOString()
   };
-
   if(CONFIG.rsvpEndpoint){
     try{
-      const res = await fetch(CONFIG.rsvpEndpoint, {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify(data)
-      });
-      if(res.ok){
-        formStatus.textContent = "Terima kasih — RSVP telah diterima.";
-        rsvpForm.reset();
-        setTimeout(hideModal,1200);
-      }else{
-        throw new Error('HTTP '+res.status);
-      }
-    }catch(err){
-      formStatus.textContent = "Gagal hantar. Sila cuba semula atau hubungi penganjur.";
-      console.error(err);
-    }
+      const res = await fetch(CONFIG.rsvpEndpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
+      if(res.ok){ formStatus.textContent="Terima kasih — RSVP diterima."; rsvpForm.reset(); setTimeout(hideModal,1200); } else throw new Error('HTTP '+res.status);
+    }catch(err){ formStatus.textContent="Gagal hantar. Sila cuba semula."; console.error(err); }
     return;
   }
-
-  // Mailto fallback: craft email
   const subject = encodeURIComponent(`RSVP: ${data.name} — ${CONFIG.coupleName}`);
-  const bodyParts = [
-    `Nama: ${data.name}`,
-    `Email: ${data.email}`,
-    `Telefon: ${data.phone}`,
-    `Hadir: ${data.attend}`,
-    `Pesanan: ${data.message}`,
-    `Tarikh Hantar: ${data.timeSubmitted}`
-  ];
-  const body = encodeURIComponent(bodyParts.join('\n'));
-  const mailto = `mailto:?subject=${subject}&body=${body}`;
-  window.location.href = mailto;
-  formStatus.textContent = "Membuka aplikasi e-mel... jika tiada, sila hubungi penganjur.";
+  const body = encodeURIComponent([`Nama: ${data.name}`, `Email: ${data.email}`, `Telefon: ${data.phone}`, `Hadir: ${data.attend}`, `Pesanan: ${data.message}`, `Tarikh Hantar: ${data.timeSubmitted}`].join('\n'));
+  window.location.href = `mailto:?subject=${subject}&body=${body}`;
+  formStatus.textContent = "Membuka aplikasi e-mel...";
 });
 
-/* Share */
+/* ========== Share ========== */
 document.getElementById('shareBtn').addEventListener('click', async ()=>{
-  const shareData = {
-    title: `${CONFIG.coupleName} - Jemputan`,
-    text: `Jemputan perkahwinan: ${CONFIG.coupleName} — ${CONFIG.metaText}`,
-    url: window.location.href
-  };
-  if(navigator.share){
-    try { await navigator.share(shareData); } catch(err){ /* silent */ }
-  }else{
-    // fallback: copy url
-    await navigator.clipboard.writeText(window.location.href);
-    alert('Pautan jemputan disalin ke papan klip.');
-  }
+  const shareData = { title: `${CONFIG.coupleName} - Jemputan`, text: `Jemputan perkahwinan: ${CONFIG.coupleName} — ${CONFIG.metaText}`, url: window.location.href };
+  if(navigator.share){ try { await navigator.share(shareData); } catch(e){ /* ignore */ } } else { await navigator.clipboard.writeText(window.location.href); alert('Pautan disalin ke papan klip.'); }
 });
 
-/* Music control */
+/* ========== Music ========== */
 const bgMusic = document.getElementById('bgMusic');
 const playMusicBtn = document.getElementById('playMusicBtn');
 let musicPlaying = false;
-
 playMusicBtn.addEventListener('click', async ()=>{
-  if(!musicPlaying){
-    try{
-      await bgMusic.play();
-      musicPlaying = true;
-      playMusicBtn.textContent = 'Henti muzik';
-    }catch(err){
-      // autoplay might be blocked; indicate user to tap
-      alert('Autoplay disekat oleh penyemak imbas. Tekan butang main semula.');
-    }
-  }else{
-    bgMusic.pause();
-    musicPlaying = false;
-    playMusicBtn.textContent = 'Main muzik';
-  }
+  if(!musicPlaying){ try{ await bgMusic.play(); musicPlaying=true; playMusicBtn.textContent='Henti muzik'; }catch(e){ alert('Autoplay disekat — tekan main sekali lagi.'); } } else { bgMusic.pause(); musicPlaying=false; playMusicBtn.textContent='Main muzik'; }
 });
-
-if(CONFIG.musicAutoPlay){
-  // best-effort: try to play
-  bgMusic.play().then(()=>{ musicPlaying = true; playMusicBtn.textContent='Henti muzik'; }).catch(()=>{/* blocked */});
-}
-
-/* Accessibility: close modal on Escape */
-document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') hideModal(); });
+if(CONFIG.musicAutoPlay){ bgMusic.play().then(()=>{ musicPlaying=true; playMusicBtn.textContent='Henti muzik'; }).catch(()=>{/* blocked */}); }
 </script>
-
 </body>
 </html>
