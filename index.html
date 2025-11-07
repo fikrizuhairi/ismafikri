@@ -9,7 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
-/* ========== MOBILE-FIRST STYLES ========== */
 :root{
   --bg: #060607;
   --card: rgba(255,255,255,0.03);
@@ -24,7 +23,7 @@
   --font-script: "Great Vibes", cursive;
 }
 
-/* Reset */
+/* Reset & base */
 *{box-sizing:border-box}
 html,body{height:100%; margin:0; font-family:var(--font-sans); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
 body{background:var(--bg); color:#fff; line-height:1.45;}
@@ -46,7 +45,7 @@ body{background:var(--bg); color:#fff; line-height:1.45;}
   text-align:left;
 }
 
-/* Card (stack on mobile) */
+/* Card */
 .card{
   width:100%;
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
@@ -59,8 +58,9 @@ body{background:var(--bg); color:#fff; line-height:1.45;}
   backdrop-filter: blur(4px);
 }
 
-/* Top row (text) */
+/* text */
 .logo-label{font-size:13px; color:var(--muted); margin-bottom:6px}
+.parents{font-size:13px; color:var(--muted); margin-bottom:6px}
 .couple{
   font-family:var(--font-script);
   font-size:34px;
@@ -71,50 +71,29 @@ body{background:var(--bg); color:#fff; line-height:1.45;}
 .meta{font-size:14px; color:var(--muted)}
 
 /* Countdown */
-.countdown{
-  display:flex;
-  gap:10px;
-  margin-top:10px;
-  flex-wrap:wrap;
-}
-.countdown .item{
-  min-width:56px;
-  padding:10px;
-  border-radius:10px;
-  background:var(--glass);
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-.countdown .num{font-weight:700; font-size:18px; color:#fff}
-.countdown .label{font-size:12px; color:rgba(255,255,255,0.9); margin-top:4px}
+.countdown{ display:flex; gap:10px; margin-top:10px; flex-wrap:wrap; }
+.countdown .item{ min-width:56px; padding:10px; border-radius:10px; background:var(--glass); text-align:center; display:flex; flex-direction:column; align-items:center; }
+.countdown .num{ font-weight:700; font-size:18px; color:#fff }
+.countdown .label{ font-size:12px; color:rgba(255,255,255,0.9); margin-top:4px }
 
 /* Actions */
 .actions{display:flex; gap:10px; margin-top:12px; flex-wrap:wrap}
-.btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  height:var(--btn-h); padding:0 16px; border-radius:10px; border:0;
-  font-weight:600; cursor:pointer; text-decoration:none; color:var(--accent);
-  background:transparent; min-width:110px;
-}
-.btn-primary{
-  background:linear-gradient(90deg,#ffcfb0,#ffd4a2); color:#2b1b10;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
-}
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; height:var(--btn-h); padding:0 16px; border-radius:10px; border:0; font-weight:600; cursor:pointer; text-decoration:none; color:var(--accent); background:transparent; min-width:110px;}
+.btn-primary{ background:linear-gradient(90deg,#ffcfb0,#ffd4a2); color:#2b1b10; box-shadow: 0 8px 22px rgba(0,0,0,0.45);}
 .btn:active{transform:translateY(1px)}
 
-/* Thumbnail */
+/* Thumb */
 .thumb{width:100%; height:220px; border-radius:10px; overflow:hidden; background:rgba(255,255,255,0.02)}
 .thumb img{width:100%; height:100%; object-fit:cover; display:block}
 
-/* DETAILS section */
+/* Details */
 .section{padding:18px; display:block}
 .card-inner{background:var(--card); border-radius:12px; padding:14px; color:var(--muted)}
-
-/* Map responsive */
 .map{width:100%; height:220px; border-radius:10px; overflow:hidden; border:1px solid rgba(255,255,255,0.04); margin-top:10px}
 .map iframe{width:100%; height:100%; border:0}
+
+.aside{margin-top:12px; display:flex; gap:10px; flex-direction:column}
+.badge{display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.03); font-size:12px; color:var(--muted)}
 
 /* Modal */
 .modal-backdrop{position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:40; background:rgba(0,0,0,0.6); padding:20px}
@@ -125,7 +104,7 @@ label{display:block; font-size:13px; margin-bottom:6px; color:var(--muted)}
 input[type="text"], input[type="email"], textarea, select{width:100%; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:transparent; color:#fff}
 
 /* Footer */
-.footer{padding:16px; text-align:center; color:var(--muted); font-size:13px;}
+.footer{padding:16px; text-align:center; color:var(--muted); font-size:13px}
 
 /* Larger screens */
 @media (min-width:880px){
@@ -141,8 +120,9 @@ input[type="text"], input[type="email"], textarea, select{width:100%; padding:10
 /* Accessibility focus */
 .btn:focus, a:focus, input:focus, textarea:focus{outline:3px solid rgba(255,220,160,0.12); outline-offset:2px}
 
-/* Utility hidden */
+/* Utility */
 .hidden{display:none !important}
+.arabic{font-family: "Scheherazade", serif; font-size:18px; direction:rtl; text-align:center}
 </style>
 </head>
 <body>
@@ -152,9 +132,22 @@ input[type="text"], input[type="email"], textarea, select{width:100%; padding:10
   <section class="hero" id="hero" aria-label="Jemputan utama">
     <div class="card" role="region" aria-label="Kad jemputan">
       <div class="invite-text">
-        <div class="logo-label">Dengan nama Allah, kami menjemput anda</div>
-        <div class="couple" id="coupleName">Isma & Fikri</div>
-        <div class="meta" id="metaText">Sabtu, 03 Januari 2026 • White House Event Space, Dungun</div>
+        <div class="logo-label">هُ — Assalamualaikum &amp; Salam Sejahtera</div>
+
+        <div class="parents">
+          HJ. MOHD SHUHAIMI BIN DAUD<br>
+          &amp;<br>
+          HJH. NOR AZILA BINTI RAMLI
+        </div>
+
+        <div style="color:var(--muted); margin-bottom:6px;">Dengan penuh kesyukuran kami menjemput,</div>
+        <div style="color:var(--muted); margin-bottom:8px;"><strong>Dato’ | Datin | Tuan | Puan | Encik | Cik</strong></div>
+
+        <div style="color:var(--muted); margin-bottom:10px;">ke majlis perkahwinan puteri kami</div>
+
+        <div class="couple" id="coupleName">SITI ISMAHANI IZZATI<br> &amp; <br> MUHAMMAD FIKRI BIN ZUHAIRI</div>
+
+        <div class="meta" id="metaText">Tarikh | Date — 03 JANUARI 2026</div>
 
         <!-- Countdown -->
         <div class="countdown" id="countdown" aria-live="polite" aria-atomic="true">
@@ -168,13 +161,20 @@ input[type="text"], input[type="email"], textarea, select{width:100%; padding:10
         <div class="actions" role="toolbar" aria-label="Tindakan">
           <button class="btn btn-primary" id="rsvpBtn" aria-haspopup="dialog">RSVP</button>
           <a class="btn" href="#detail" role="button">Butiran Majlis</a>
-          <button class="btn hidden" id="playMusicBtn" title="Main / Henti muzik">Main muzik</button>
+          <button class="btn" id="playMusicBtn" title="Mute / Unmute muzik">Mute / Unmute</button>
         </div>
+
+        <div style="margin-top:12px; color:var(--muted); font-size:13px;">
+          بَارَكَ اللهُ لَكُماَ وَبَارَكَ عَلَيْكُماَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ<br>
+          <em>“Semoga Allah memberkatimu saat bahagia dan saat susah, serta mengumpulkan kalian berdua di dalam kebaikan.”</em><br>
+          <small style="color:var(--muted)">(HR. Abu Daud, No. 2130)</small>
+        </div>
+
       </div>
 
       <!-- Thumb image -->
       <div class="thumb" aria-hidden="false">
-        <img src="assets/couple.jpg" alt="Pasangan - Isma & Fikri" loading="lazy">
+        <img src="assets/couple.jpg" alt="Pasangan - Siti Ismahani & Muhammad Fikri" loading="lazy">
       </div>
     </div>
   </section>
@@ -182,18 +182,17 @@ input[type="text"], input[type="email"], textarea, select{width:100%; padding:10
   <!-- DETAILS -->
   <section id="detail" class="section" aria-label="Butiran majlis">
     <div class="card-inner">
-      <h3 style="color:#fff; margin-top:0">Aturcara</h3>
-      <p><strong>Akad:</strong> 8:00 pagi — White House Event Space, Dungun</p>
-      <p><strong>Majlis Makan:</strong> 11:00 tengahari — White House Event Space, Dungun</p>
-      <p>Kami amat menghargai kehadiran anda. Sila sahkan kehadiran melalui borang RSVP.</p>
+      <h3 style="color:#fff; margin-top:0">Atur Cara | Itinerary</h3>
+      <p><strong>Jamuan :</strong> 11.00 AM – 4.00 PM</p>
+      <p><strong>Ketibaan Pengantin :</strong> 12.00 PM</p>
 
       <hr style="border:none; height:1px; background:rgba(255,255,255,0.03); margin:14px 0">
 
-      <h4 style="color:#fff">Lokasi</h4>
-      <p class="badges"><span class="badge">White House Event Space, Dungun</span></p>
+      <h4 style="color:#fff">Lokasi | Location</h4>
+      <p class="badges"><span class="badge">WHITE HOUSE EVENT SPACE, DUNGUN</span></p>
 
       <div class="map" id="mapWrap" aria-hidden="false">
-        <!-- Embed map (search query) -->
+        <!-- Embed map -->
         <iframe id="gmap"
           src="https://www.google.com/maps?q=White+House+Event+Space+Dungun&output=embed"
           loading="lazy" referrerpolicy="no-referrer-when-downgrade" aria-label="Peta lokasi"></iframe>
@@ -206,9 +205,8 @@ input[type="text"], input[type="email"], textarea, select{width:100%; padding:10
       </div>
 
       <div class="aside" style="margin-top:12px">
-        <div><strong style="color:#fff">Maklumat Tambahan</strong></div>
-        <div style="color:var(--muted)">Pakaian: Sopan. Had umur: Semua dialu-alukan.</div>
-        <div style="color:var(--muted)"><strong>Hubungi:</strong> +60 19-9150821 (Hj Shuhaimi)</div>
+        <div style="color:var(--muted)"><strong>Hubungi:</strong> +60 12-345 6789 (Isma)</div>
+        <div style="color:var(--muted)"><strong>Pakaian:</strong> Sopan</div>
         <div style="margin-top:8px">
           <button class="btn" id="shareBtn">Kongsi Jemputan</button>
         </div>
@@ -267,47 +265,36 @@ input[type="text"], input[type="email"], textarea, select{width:100%; padding:10
     </div>
   </div>
 
-  <footer class="footer">Terima kasih — Kami tak sabar nak berjumpa anda! 🌺</footer>
+  <footer class="footer">Terima kasih — بَارَكَ اللهُ لَكُماَ 🌺</footer>
 </div>
 
-<!-- ===== YouTube autoplay (mute) - Option 3 ===== -->
-<!-- This will autoplay muted when the page loads (reliable across browsers) -->
-<iframe
-  width="0"
-  height="0"
-  src="https://www.youtube.com/embed/JmIUdR_fob0?autoplay=1&mute=1&loop=1&playlist=JmIUdR_fob0"
-  frameborder="0"
-  allow="autoplay; encrypted-media"
-  allowfullscreen>
-</iframe>
+<!-- YT API container (hidden) -->
+<div id="yt-player-container" style="width:0;height:0;overflow:hidden;position:fixed;left:-9999px;top:-9999px;"></div>
+<script src="https://www.youtube.com/iframe_api"></script>
 
 <script>
 /* ================= CONFIG =================
-   - Set rsvpEndpoint to your deployed Apps Script Web App URL (or leave empty for mailto fallback)
-   - Set rsvpSecret to the secret token you used in Apps Script (must match)
+   - Paste your Apps Script web app URL in rsvpEndpoint to enable Google Sheets saving
+   - Set rsvpSecret to match SECRET_TOKEN in your Apps Script deployment
 */
 const CONFIG = {
-  coupleName: "Isma & Fikri",
-  // Countdown target (3 Jan 2026, 08:00 Malaysia time)
+  coupleName: "SITI ISMAHANI IZZATI & MUHAMMAD FIKRI",
   dateISO: "2026-01-03T08:00:00+08:00",
-  metaText: "Sabtu, 03 Januari 2026 • White House Event Space, Dungun",
+  metaText: "03 JANUARI 2026",
   heroImage: "assets/hero.jpg",
   coupleImage: "assets/couple.jpg",
-  // If you have deployed Apps Script web app, paste URL here:
-  // Example: "https://script.google.com/macros/s/AKfycbx.../exec"
   rsvpEndpoint: "",
-
-  // The secret token (must match SECRET_TOKEN in your Apps Script)
   rsvpSecret: "gembira2026!"
 };
 /* ========================================= */
 
-document.getElementById('coupleName').textContent = CONFIG.coupleName;
-document.getElementById('metaText').textContent = CONFIG.metaText;
+/* Init UI */
+document.getElementById('coupleName').textContent = "SITI ISMAHANI IZZATI\n&\nMUHAMMAD FIKRI BIN ZUHAIRI";
+document.getElementById('metaText').textContent = "03 JANUARI 2026";
 document.querySelector('.hero').style.backgroundImage = `linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0.48)), url('${CONFIG.heroImage}')`;
 document.querySelector('.thumb img').src = CONFIG.coupleImage;
 
-/* ========== Countdown ========== */
+/* Countdown */
 function pad(n){ return String(n).padStart(2,'0'); }
 function startCountdown(targetISO){
   const target = new Date(targetISO);
@@ -353,7 +340,7 @@ function startCountdown(targetISO){
 }
 startCountdown(CONFIG.dateISO);
 
-/* ========== Modal & RSVP ========== */
+/* Modal & RSVP */
 const rsvpBtn = document.getElementById('rsvpBtn');
 const modal = document.getElementById('modalBackdrop');
 const closeModal = document.getElementById('closeModal');
@@ -370,7 +357,6 @@ cancelForm.addEventListener('click', hideModal);
 modal.addEventListener('click', (e)=>{ if(e.target===modal) hideModal(); });
 document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') hideModal(); });
 
-/* Form submit: POST to Apps Script if endpoint set; else mailto fallback */
 rsvpForm.addEventListener('submit', async (e)=>{
   e.preventDefault();
   formStatus.textContent = "Menghantar...";
@@ -423,7 +409,7 @@ rsvpForm.addEventListener('submit', async (e)=>{
   formStatus.textContent = "Membuka aplikasi e-mel... jika tiada, sila hubungi penganjur.";
 });
 
-/* ========== Share ========== */
+/* Share */
 document.getElementById('shareBtn').addEventListener('click', async ()=>{
   const shareData = {
     title: `${CONFIG.coupleName} - Jemputan`,
@@ -437,6 +423,113 @@ document.getElementById('shareBtn').addEventListener('click', async ()=>{
     alert('Pautan disalin ke papan klip.');
   }
 });
+
+/* ====== YouTube player (attempt autoplay with sound; fallback to muted autoplay) ====== */
+let ytPlayer = null;
+let ytReady = false;
+let isMuted = false;
+const YT_VIDEO_ID = 'JmIUdR_fob0';
+const playBtn = document.getElementById('playMusicBtn');
+
+function onYouTubeIframeAPIReady() {
+  ytPlayer = new YT.Player('yt-player-container', {
+    height: '0',
+    width: '0',
+    videoId: YT_VIDEO_ID,
+    playerVars: {
+      autoplay: 1,
+      controls: 0,
+      mute: 0,            // try to start with sound
+      loop: 1,
+      playlist: YT_VIDEO_ID,
+      modestbranding: 1,
+      rel: 0
+    },
+    events: {
+      onReady: onPlayerReady,
+      onStateChange: onPlayerStateChange,
+      onError: onPlayerError
+    }
+  });
+}
+
+function onPlayerReady(event) {
+  ytReady = true;
+  try { event.target.playVideo(); } catch (err) {}
+  // If autoplay with sound is blocked, fallback to mute autoplay
+  setTimeout(() => {
+    try {
+      const state = ytPlayer.getPlayerState();
+      if (state !== 1) {
+        ytPlayer.mute();
+        isMuted = true;
+        ytPlayer.playVideo();
+        updatePlayButton();
+      } else {
+        isMuted = false;
+        updatePlayButton();
+      }
+    } catch (err) {
+      try { ytPlayer.mute(); isMuted = true; ytPlayer.playVideo(); updatePlayButton(); } catch(e){}
+    }
+  }, 1100);
+}
+
+function onPlayerStateChange(event) { /* placeholder */ }
+function onPlayerError(event) {
+  if (!document.getElementById('yt-fallback')) {
+    const fallback = document.createElement('iframe');
+    fallback.id = 'yt-fallback';
+    fallback.width = '0';
+    fallback.height = '0';
+    fallback.src = `https://www.youtube.com/embed/${YT_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${YT_VIDEO_ID}`;
+    fallback.frameBorder = '0';
+    fallback.allow = 'autoplay; encrypted-media';
+    document.body.appendChild(fallback);
+    isMuted = true;
+    updatePlayButton();
+  }
+}
+
+function updatePlayButton(){
+  if (!playBtn) return;
+  if (isMuted) playBtn.textContent = 'Unmute 🔊'; else playBtn.textContent = 'Mute 🔇';
+}
+
+playBtn.addEventListener('click', () => {
+  if (!ytReady || !ytPlayer) {
+    if (!document.getElementById('yt-fallback')) {
+      const fallback = document.createElement('iframe');
+      fallback.id = 'yt-fallback';
+      fallback.width = '0';
+      fallback.height = '0';
+      fallback.src = `https://www.youtube.com/embed/${YT_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${YT_VIDEO_ID}`;
+      fallback.frameBorder = '0';
+      fallback.allow = 'autoplay; encrypted-media';
+      document.body.appendChild(fallback);
+      isMuted = true;
+      updatePlayButton();
+      return;
+    }
+  }
+  try {
+    if (isMuted) {
+      ytPlayer.unMute(); ytPlayer.playVideo(); isMuted = false;
+    } else {
+      ytPlayer.mute(); isMuted = true;
+    }
+    updatePlayButton();
+  } catch (err) {
+    const fallback = document.getElementById('yt-fallback');
+    if (fallback) {
+      if (isMuted) fallback.src = `https://www.youtube.com/embed/${YT_VIDEO_ID}?autoplay=1&mute=0&loop=1&playlist=${YT_VIDEO_ID}`, isMuted=false;
+      else fallback.src = `https://www.youtube.com/embed/${YT_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${YT_VIDEO_ID}`, isMuted=true;
+      updatePlayButton();
+    }
+  }
+});
+
+window.addEventListener('pagehide', () => { try { if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo(); } catch(e){} });
 </script>
 
 </body>
