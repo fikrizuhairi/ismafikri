@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Jemputan - [Nama Pasangan]</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg-overlay: rgba(8,7,12,0.45);
+  --accent: #f8d7b6;
+  --muted: #cfcfd3;
+  --glass: rgba(255,255,255,0.06);
+  --radius: 14px;
+  --maxw: 980px;
+  --transition: 300ms cubic-bezier(.2,.9,.2,1);
+  --font-sans: "Poppins",system-ui,-apple-system,"Segoe UI",Roboto, "Helvetica Neue", Arial;
+  --font-script: "Great Vibes", cursive;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:var(--font-sans);
+  color:#fff;
+  background:#000;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+}
+
+/* Hero */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:48px 20px;
+  background-image: url('assets/hero.jpg'); /* <-- ganti dengan imej anda */
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  text-align:center;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.55));
+  z-index:0;
+}
+.container{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:var(--maxw);
+}
+
+/* card */
+.card{
+  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border-radius: var(--radius);
+  padding:28px;
+  backdrop-filter: blur(6px) saturate(120%);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  display:flex;
+  gap:28px;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+/* left text */
+.invite-text{
+  flex:1 1 420px;
+  min-width:260px;
+  text-align:left;
+  color:var(--accent);
+}
+.logo-label{font-size:14px; color:var(--muted); margin-bottom:8px}
+.couple{
+  font-family:var(--font-script);
+  font-size:48px;
+  color:#fff;
+  margin:6px 0 4px;
+  letter-spacing:0.6px;
+}
+.meta{
+  color:var(--muted);
+  font-size:15px;
+  margin-bottom:12px;
+}
+
+/* right box image */
+.thumb{
+  width:240px;
+  height:240px;
+  border-radius:12px;
+  overflow:hidden;
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  flex:0 0 240px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(255,255,255,0.06);
+}
+.thumb img{width:100%; height:100%; object-fit:cover; display:block;}
+
+/* buttons */
+.actions{margin-top:14px; display:flex; gap:12px; flex-wrap:wrap}
+.btn{
+  border:0;
+  padding:10px 16px;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
+  transition:all var(--transition);
+  background:transparent;
+  color:var(--accent);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+}
+.btn:hover{transform:translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,0.45)}
+.btn-primary{
+  background:linear-gradient(90deg,#ffcfb0,#ffd4a2);
+  color:#2b1b10;
+  padding:10px 18px;
+}
+
+/* countdown */
+.countdown{
+  margin-top:18px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  color:var(--muted);
+  font-size:14px;
+}
+.countdown .item{background:var(--glass); padding:10px 12px; border-radius:8px; min-width:64px; text-align:center}
+.countdown .num{font-weight:700; font-size:18px; color:#fff; display:block}
+
+/* detail section */
+.section{
+  padding:42px 20px;
+  display:flex;
+  justify-content:center;
+}
+.card-inner{
+  width:100%;
+  max-width:var(--maxw);
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:12px;
+  padding:22px;
+  color:var(--muted);
+  box-shadow:0 6px 24px rgba(0,0,0,0.45);
+}
+
+/* two-col */
+.row{
+  display:grid;
+  grid-template-columns: 1fr 320px;
+  gap:20px;
+}
+@media (max-width:880px){
+  .row{grid-template-columns: 1fr}
+  .thumb{width:180px; height:180px}
+  .couple{font-size:40px}
+}
+
+/* map */
+.map{
+  width:100%;
+  height:220px;
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.04);
+}
+
+/* modal */
+.modal-backdrop{
+  position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:40;
+  background:rgba(0,0,0,0.6);
+}
+.modal{
+  width:100%;
+  max-width:520px;
+  background:#0f0f10;
+  border-radius:12px;
+  padding:18px;
+  box-shadow:0 24px 60px rgba(0,0,0,0.65);
+  border:1px solid rgba(255,255,255,0.04);
+}
+.form-row{display:flex; gap:8px; margin-bottom:12px}
+.form-row .field{flex:1}
+label{display:block; font-size:13px; margin-bottom:6px; color:var(--muted)}
+input[type="text"], input[type="email"], textarea, select{
+  width:100%; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06);
+  background:transparent; color:#fff; outline:none; font-size:14px;
+}
+textarea{min-height:96px; resize:vertical}
+
+/* footer */
+.footer{padding:20px; text-align:center; color:var(--muted); font-size:13px}
+
+/* small helpers */
+.badge{display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.03); font-size:12px; color:var(--muted)}
+.icon{opacity:0.9; margin-right:8px}
+.hidden{display:none}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="card" role="region" aria-label="Jemputan Utama">
+      <div class="invite-text">
+        <div class="logo-label">Dengan nama Allah, kami menjemput anda</div>
+        <div class="couple" id="coupleName">Alya & Fikri</div>
+        <div class="meta" id="metaText">Sabtu, 15 Februari 2025 • Masjid Al-Hidayah, Kuantan</div>
+
+        <div class="countdown" aria-live="polite" aria-atomic="true">
+          <div class="item"><span class="num" id="cd-days">00</span><span style="font-size:12px">Hari</span></div>
+          <div class="item"><span class="num" id="cd-hours">00</span><span style="font-size:12px">Jam</span></div>
+          <div class="item"><span class="num" id="cd-mins">00</span><span style="font-size:12px">Minit</span></div>
+          <div class="item"><span class="num" id="cd-secs">00</span><span style="font-size:12px">Saat</span></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" id="rsvpBtn" aria-haspopup="dialog">RSVP</button>
+          <a class="btn" href="#detail" role="button">Butiran Majlis</a>
+          <button class="btn" id="playMusicBtn" title="Main / Henti muzik">Main muzik</button>
+        </div>
+      </div>
+
+      <div class="thumb" aria-hidden="false">
+        <img src="assets/couple.jpg" alt="Pasangan - Alya & Fikri">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAILS -->
+<section id="detail" class="section">
+  <div class="card-inner">
+    <div class="row">
+      <div>
+        <h3 style="color:#fff; margin-top:0">Aturcara</h3>
+        <p><strong>Akad:</strong> 10:00 pagi — Masjid Al-Hidayah</p>
+        <p><strong>Majlis Makan:</strong> 12:00 tengahari — Dewan Raya Kuantan</p>
+        <p>Kami amat menghargai kehadiran anda. Sila sahkan kehadiran melalui borang RSVP.</p>
+
+        <hr style="border:none; height:1px; background:rgba(255,255,255,0.03); margin:16px 0">
+
+        <h4 style="color:#fff">Lokasi</h4>
+        <p class="badges"><span class="badge">Masjid Al-Hidayah</span> <span class="badge">Dewan Raya</span></p>
+
+        <div style="margin-top:12px" class="map" id="mapWrap">
+          <!-- Embedded Google Maps iframe: ganti src sesuai lokasi anda -->
+          <iframe id="gmap"
+            src="https://www.google.com/maps?q=Masjid%20Al-Hidayah%20Kuantan&output=embed"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+      </div>
+
+      <aside>
+        <h4 style="color:#fff; margin-top:0">Maklumat Tambahan</h4>
+        <p style="color:var(--muted)">Pakaian: Sopan. Had umur: Semua dialu-alukan.</p>
+        <p style="color:var(--muted)"><strong>Hubungi:</strong> +60 12-345 6789 (Alya)</p>
+
+        <div style="margin-top:18px">
+          <button class="btn" id="shareBtn">Kongsi Jemputan</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- RSVP Modal -->
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal" role="document">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px">
+      <strong style="font-size:16px">Borang RSVP</strong>
+      <button class="btn" id="closeModal">Tutup</button>
+    </div>
+
+    <form id="rsvpForm">
+      <div class="form-row">
+        <div class="field">
+          <label for="guestName">Nama</label>
+          <input id="guestName" name="name" type="text" placeholder="Nama penuh" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="guestEmail">Email (pilihan)</label>
+          <input id="guestEmail" name="email" type="email" placeholder="contoh@mail.com">
+        </div>
+        <div class="field">
+          <label for="guestPhone">Telefon</label>
+          <input id="guestPhone" name="phone" type="text" placeholder="+60 12-345 6789" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="willAttend">Hadir?</label>
+          <select id="willAttend" name="attend" required>
+            <option value="yes">Ya, saya akan hadir</option>
+            <option value="no">Maaf, tidak dapat hadir</option>
+            <option value="maybe">Belum pasti</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="msg">Pesanan / Permintaan</label>
+      <textarea id="msg" name="message" placeholder="Ada keperluan khas?"></textarea>
+
+      <div style="margin-top:12px; display:flex; gap:8px; justify-content:flex-end">
+        <button type="button" class="btn" id="cancelForm">Batal</button>
+        <button type="submit" class="btn btn-primary">Hantar RSVP</button>
+      </div>
+
+      <p id="formStatus" style="margin-top:10px; color:var(--muted); font-size:13px"></p>
+    </form>
+  </div>
+</div>
+
+<footer class="footer">Terima kasih — Kami tak sabar nak berjumpa anda! 🌺</footer>
+
+<!-- Audio (optional) -->
+<audio id="bgMusic" loop preload="none">
+  <source src="assets/music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* ========== CONFIGURE HERE ========== */
+/* Ganti nilai di bawah mengikut majlis anda */
+const CONFIG = {
+  coupleName: "Alya & Fikri",
+  dateISO: "2025-02-15T10:00:00+08:00", // ISO datetime (change to majlis anda)
+  metaText: "Sabtu, 15 Februari 2025 • Masjid Al-Hidayah, Kuantan",
+  heroImage: "assets/hero.jpg",
+  coupleImage: "assets/couple.jpg",
+  musicAutoPlay: false,
+  musicFile: "assets/music.mp3",
+  rsvpEndpoint: "", // optional: webhook URL (Formspree / Google Apps Script / server endpoint). If blank, form will create mailto fallback.
+};
+/* ===================================== */
+
+document.getElementById('coupleName').textContent = CONFIG.coupleName;
+document.getElementById('metaText').textContent = CONFIG.metaText;
+document.querySelector('.hero').style.backgroundImage = `url('${CONFIG.heroImage}')`;
+document.querySelector('.thumb img').src = CONFIG.coupleImage;
+document.querySelector('#bgMusic source').src = CONFIG.musicFile;
+document.getElementById('bgMusic').load();
+
+/* Countdown */
+function updateCountdown(){
+  const target = new Date(CONFIG.dateISO);
+  const now = new Date();
+  const diff = target - now;
+  if(diff <= 0){
+    document.getElementById('cd-days').textContent = '00';
+    document.getElementById('cd-hours').textContent = '00';
+    document.getElementById('cd-mins').textContent = '00';
+    document.getElementById('cd-secs').textContent = '00';
+    return;
+  }
+  const secs = Math.floor(diff/1000);
+  const days = Math.floor(secs / (3600*24));
+  const hours = Math.floor((secs % (3600*24)) / 3600);
+  const mins = Math.floor((secs % 3600) / 60);
+  const s = secs % 60;
+  document.getElementById('cd-days').textContent = String(days).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('cd-mins').textContent = String(mins).padStart(2,'0');
+  document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* Modal & RSVP form handling */
+const rsvpBtn = document.getElementById('rsvpBtn');
+const modal = document.getElementById('modalBackdrop');
+const closeModal = document.getElementById('closeModal');
+const cancelForm = document.getElementById('cancelForm');
+const rsvpForm = document.getElementById('rsvpForm');
+const formStatus = document.getElementById('formStatus');
+
+function openModal(){
+  modal.style.display = 'flex';
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('guestName').focus();
+}
+function hideModal(){
+  modal.style.display = 'none';
+  modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+
+rsvpBtn.addEventListener('click', openModal);
+closeModal.addEventListener('click', hideModal);
+cancelForm.addEventListener('click', hideModal);
+modal.addEventListener('click', (e)=>{ if(e.target===modal) hideModal(); });
+
+/* Form submit: tries to POST to rsvpEndpoint if set; otherwise mailto fallback */
+rsvpForm.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  formStatus.textContent = "Menghantar...";
+
+  const data = {
+    name: rsvpForm.name.value.trim(),
+    email: rsvpForm.email.value.trim(),
+    phone: rsvpForm.phone.value.trim(),
+    attend: rsvpForm.attend.value,
+    message: rsvpForm.message.value.trim(),
+    timeSubmitted: new Date().toISOString()
+  };
+
+  if(CONFIG.rsvpEndpoint){
+    try{
+      const res = await fetch(CONFIG.rsvpEndpoint, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(data)
+      });
+      if(res.ok){
+        formStatus.textContent = "Terima kasih — RSVP telah diterima.";
+        rsvpForm.reset();
+        setTimeout(hideModal,1200);
+      }else{
+        throw new Error('HTTP '+res.status);
+      }
+    }catch(err){
+      formStatus.textContent = "Gagal hantar. Sila cuba semula atau hubungi penganjur.";
+      console.error(err);
+    }
+    return;
+  }
+
+  // Mailto fallback: craft email
+  const subject = encodeURIComponent(`RSVP: ${data.name} — ${CONFIG.coupleName}`);
+  const bodyParts = [
+    `Nama: ${data.name}`,
+    `Email: ${data.email}`,
+    `Telefon: ${data.phone}`,
+    `Hadir: ${data.attend}`,
+    `Pesanan: ${data.message}`,
+    `Tarikh Hantar: ${data.timeSubmitted}`
+  ];
+  const body = encodeURIComponent(bodyParts.join('\n'));
+  const mailto = `mailto:?subject=${subject}&body=${body}`;
+  window.location.href = mailto;
+  formStatus.textContent = "Membuka aplikasi e-mel... jika tiada, sila hubungi penganjur.";
+});
+
+/* Share */
+document.getElementById('shareBtn').addEventListener('click', async ()=>{
+  const shareData = {
+    title: `${CONFIG.coupleName} - Jemputan`,
+    text: `Jemputan perkahwinan: ${CONFIG.coupleName} — ${CONFIG.metaText}`,
+    url: window.location.href
+  };
+  if(navigator.share){
+    try { await navigator.share(shareData); } catch(err){ /* silent */ }
+  }else{
+    // fallback: copy url
+    await navigator.clipboard.writeText(window.location.href);
+    alert('Pautan jemputan disalin ke papan klip.');
+  }
+});
+
+/* Music control */
+const bgMusic = document.getElementById('bgMusic');
+const playMusicBtn = document.getElementById('playMusicBtn');
+let musicPlaying = false;
+
+playMusicBtn.addEventListener('click', async ()=>{
+  if(!musicPlaying){
+    try{
+      await bgMusic.play();
+      musicPlaying = true;
+      playMusicBtn.textContent = 'Henti muzik';
+    }catch(err){
+      // autoplay might be blocked; indicate user to tap
+      alert('Autoplay disekat oleh penyemak imbas. Tekan butang main semula.');
+    }
+  }else{
+    bgMusic.pause();
+    musicPlaying = false;
+    playMusicBtn.textContent = 'Main muzik';
+  }
+});
+
+if(CONFIG.musicAutoPlay){
+  // best-effort: try to play
+  bgMusic.play().then(()=>{ musicPlaying = true; playMusicBtn.textContent='Henti muzik'; }).catch(()=>{/* blocked */});
+}
+
+/* Accessibility: close modal on Escape */
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') hideModal(); });
+</script>
+
+</body>
+</html>
